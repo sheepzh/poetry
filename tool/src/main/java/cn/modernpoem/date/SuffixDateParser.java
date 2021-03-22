@@ -1,7 +1,9 @@
-package cn.mordernpoem.date;
+package cn.modernpoem.date;
 
-import cn.mordernpoem.bean.Poem;
+import cn.modernpoem.bean.Poem;
+import cn.modernpoem.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -16,24 +18,29 @@ public class SuffixDateParser {
     List<DateFormatter> formatters;
 
     public SuffixDateParser() {
-        formatters = Collections.singletonList(new YmdFormatter());
+        formatters = Arrays.asList(new YmdFormatter(), new YmFormatter());
     }
 
-    public void parse(Poem poem) {
-        if (poem.getDate() != null) {
-            return;
+    public boolean parse(Poem poem) {
+        if (!StringUtils.isBlank(poem.getDate())) {
+            return false;
         }
         List<String> contents = poem.getLines();
+        if (contents.isEmpty()) {
+            return false;
+        }
         String lastLine = contents.get(contents.size() - 1);
         if (Objects.equals(lastLine, "")) {
-            return;
+            return false;
         }
         for (DateFormatter formatter : formatters) {
             String date = formatter.format(lastLine);
             if (date != null) {
                 poem.setDate(date);
-                return;
+                contents.remove(contents.size() - 1);
+                return true;
             }
         }
+        return false;
     }
 }

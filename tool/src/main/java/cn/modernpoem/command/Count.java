@@ -1,7 +1,7 @@
-package cn.mordernpoem.command;
+package cn.modernpoem.command;
 
-import cn.mordernpoem.bean.Poem;
-import cn.mordernpoem.bean.Poet;
+import cn.modernpoem.bean.Poem;
+import cn.modernpoem.bean.Poet;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -40,7 +40,7 @@ public class Count extends BaseCommand {
     }
 
     @Override
-    boolean assertAndSave(ArgReader argReader) {
+    public boolean assertAndSave(ArgReader argReader) {
         while (argReader.hasNext()) {
             String s = argReader.read();
             if (this.isArg(s)) {
@@ -85,7 +85,7 @@ public class Count extends BaseCommand {
     }
 
     @Override
-    void deal() {
+    void deal0() {
         List<Poem> titleContains = new ArrayList<>();
         Map<Poem, List<String>> appear = new HashMap<>(16);
         Consumer<Poem> poem2Poet;

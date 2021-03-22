@@ -1,10 +1,11 @@
-package cn.mordernpoem.bean;
+package cn.modernpoem.bean;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -49,7 +50,14 @@ public class Poem {
 
     @Override
     public String toString() {
-        String var10000 = this.getTitleAndPoet();
-        return var10000 + "\n\n" + String.join("\n", this.lines);
+        String titleAndPoet = this.getTitleAndPoet();
+        return titleAndPoet + " " + (date == null ? "" : date) + "\n\n" + String.join("\n", this.lines);
+    }
+
+    public String getFilePath() {
+        if (poet == null) {
+            return "";
+        }
+        return poet.getDirName() + File.separator + title + ".pt";
     }
 }

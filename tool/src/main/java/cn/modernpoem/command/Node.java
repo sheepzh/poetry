@@ -1,4 +1,4 @@
-package cn.mordernpoem.command;
+package cn.modernpoem.command;
 
 import java.util.HashMap;
 import java.util.Map;

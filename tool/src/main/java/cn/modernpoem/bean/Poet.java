@@ -1,4 +1,4 @@
-package cn.mordernpoem.bean;
+package cn.modernpoem.bean;
 
 import lombok.AccessLevel;
 import lombok.Getter;

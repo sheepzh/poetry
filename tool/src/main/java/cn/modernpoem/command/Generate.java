@@ -1,4 +1,4 @@
-package cn.mordernpoem.command;
+package cn.modernpoem.command;
 
 import java.util.Objects;
 
@@ -15,7 +15,7 @@ public class Generate extends BaseCommand {
     }
 
     @Override
-    boolean assertAndSave(ArgReader reader) {
+    public boolean assertAndSave(ArgReader reader) {
         String arg;
         while (reader.hasNext()) {
             arg = this.getArg(reader.read());
@@ -29,7 +29,7 @@ public class Generate extends BaseCommand {
     }
 
     @Override
-    void deal() {
+    void deal0() {
 
     }
 }

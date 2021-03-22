@@ -1,8 +1,9 @@
-package cn.mordernpoem;
+package cn.modernpoem;
 
-import cn.mordernpoem.command.BaseCommand;
-import cn.mordernpoem.command.Clean;
-import cn.mordernpoem.command.Count;
+import cn.modernpoem.command.ArgReader;
+import cn.modernpoem.command.BaseCommand;
+import cn.modernpoem.command.Clean;
+import cn.modernpoem.command.Count;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
@@ -24,29 +25,31 @@ public class Main {
     public static void main(String[] args) throws Exception {
         if (args.length == 0) {
             help();
-        } else {
-            Class<? extends BaseCommand> commandType;
-            String help = "help";
-            if (Objects.equals(args[0], help)) {
-                if (args.length > 1) {
-                    if ((commandType = COMMAND_MAP.get(args[1])) != null) {
-                        newInstance(commandType).help();
-                    } else {
-                        System.out.println("Instruction not found：" + args[1]);
-                    }
-                } else {
-                    help();
-                }
+            return;
+        }
+        ArgReader.init(args);
+        Class<? extends BaseCommand> commandType;
 
-            } else {
-                commandType = COMMAND_MAP.get(args[0]);
-                if (commandType == null) {
-                    help();
+        String help = "help";
+
+        if (Objects.equals(args[0], help)) {
+            if (args.length > 1) {
+                if ((commandType = COMMAND_MAP.get(args[1])) != null) {
+                    newInstance(commandType).help();
                 } else {
-                    long start = System.currentTimeMillis();
-                    newInstance(commandType).deal(args);
-                    System.out.println("\nTime used:" + (System.currentTimeMillis() - start) + "ms");
+                    System.out.println("Instruction not found：" + args[1]);
                 }
+            } else {
+                help();
+            }
+        } else {
+            commandType = COMMAND_MAP.get(args[0]);
+            if (commandType == null) {
+                help();
+            } else {
+                long start = System.currentTimeMillis();
+                newInstance(commandType).deal();
+                System.out.println("\nTime used:" + (System.currentTimeMillis() - start) + "ms");
             }
         }
     }

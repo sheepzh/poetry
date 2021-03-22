@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cn.mordenpoem</groupId>
+    <groupId>cn.modenpoem</groupId>
     <artifactId>tool</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
@@ -10,10 +10,16 @@
             <artifactId>lombok</artifactId>
             <version>1.18.16</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
-        <sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -30,7 +36,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>cn.mordernpoem.Main</mainClass>
+                            <mainClass>cn.modernpoem.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

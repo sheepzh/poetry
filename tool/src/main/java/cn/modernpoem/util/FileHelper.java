@@ -1,7 +1,7 @@
-package cn.mordernpoem.util;
+package cn.modernpoem.util;
 
-import cn.mordernpoem.bean.Poem;
-import cn.mordernpoem.bean.Poet;
+import cn.modernpoem.bean.Poem;
+import cn.modernpoem.bean.Poet;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -19,6 +19,8 @@ import java.util.*;
  */
 public class FileHelper {
     private static String ROOT_DIR_PATH;
+
+    public static boolean PRINT_SIMILAR = false;
 
     static {
         String fs = File.separator;
@@ -46,7 +48,8 @@ public class FileHelper {
                 File f = new File(ROOT_DIR_PATH + s);
                 if (f.isDirectory() && !f.isFile()) {
                     Poet poet = new Poet();
-                    poet.setName(s.substring(0, s.indexOf(95)));
+                    int indexOfUnderline = s.indexOf(95);
+                    poet.setName(indexOfUnderline == -1 ? s : s.substring(0, indexOfUnderline));
                     poet.setDirName(s);
                     poetList.add(poet);
                 }
@@ -106,12 +109,45 @@ public class FileHelper {
                 ioe.printStackTrace();
             }
         }
-
+        if (PRINT_SIMILAR) {
+            findSimilar(poems);
+        }
         return poems;
     }
 
     private String getPath(Poem p) {
-        return ROOT_DIR_PATH + p.getPoet().getDirName() + File.separator + p.getTitle() + ".pt";
+        return ROOT_DIR_PATH + p.getFilePath();
+    }
+
+    private void findSimilar(List<Poem> poems) {
+        int size = poems.size();
+        for (int i = 0; i < size; i++) {
+            Poem p1 = poems.get(i);
+            String title1 = p1.getTitle();
+            int l1 = title1.length();
+            for (int j = i + 1; j < size; j++) {
+                Poem p2 = poems.get(j);
+                String title2 = p2.getTitle();
+                int l2 = title2.length();
+
+                boolean similar = false;
+                if (l1 > 1 && l2 > 1) {
+                    boolean contains12 = title1.startsWith(title2);
+                    boolean contains21 = title2.startsWith(title1);
+                    if (contains21 || contains12) {
+                        similar = true;
+                    }
+                } else {
+                    int distance = EditDistance.minDistance(title1, title2);
+                    if (distance * 6 <= l1 + l2) {
+                        similar = true;
+                    }
+                }
+                if (similar) {
+                    System.out.println("WARNING: Similar file names. " + p1.getFilePath() + "  &  " + p2.getFilePath());
+                }
+            }
+        }
     }
 
     public void write(Poem p) {

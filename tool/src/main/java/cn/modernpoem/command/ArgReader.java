@@ -1,5 +1,5 @@
 
-package cn.mordernpoem.command;
+package cn.modernpoem.command;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,26 +14,37 @@ import java.util.Iterator;
  */
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ArgReader {
-    final Iterator<String> args;
+    private static String[] ARGS;
+
+    final Iterator<String> iterator;
+
     @Getter
     String last;
 
-    public ArgReader(String[] args) {
-        this.args = Arrays.stream(args, 1, args.length)
+    public static void init(String[] args) {
+        ARGS = Arrays.stream(args, 1, args.length)
                 .filter(arg -> !isJvmProperty(arg))
-                .iterator();
-        this.last = null;
+                .toArray(String[]::new);
     }
 
-    private boolean isJvmProperty(String s) {
+    public static ArgReader get() {
+        return new ArgReader(ARGS);
+    }
+
+    private static boolean isJvmProperty(String s) {
         return s.startsWith("-D");
     }
 
+    private ArgReader(String[] args) {
+        this.iterator = Arrays.stream(args).iterator();
+        this.last = null;
+    }
+
     public boolean hasNext() {
-        return args.hasNext();
+        return iterator.hasNext();
     }
 
     public String read() {
-        return last = args.next();
+        return last = iterator.next();
     }
 }

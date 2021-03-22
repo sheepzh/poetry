@@ -1,13 +1,12 @@
-package cn.mordernpoem.command;
+package cn.modernpoem.command;
 
-import cn.mordernpoem.bean.Poem;
-import cn.mordernpoem.bean.Poet;
-import cn.mordernpoem.util.FileHelper;
+import cn.modernpoem.bean.Poem;
+import cn.modernpoem.bean.Poet;
+import cn.modernpoem.date.SuffixDateParser;
+import cn.modernpoem.util.FileHelper;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -17,57 +16,35 @@ public class Clean extends BaseCommand {
     private static final Map<String, String> VALID_STRING_MAP = new HashMap<>();
     private static final Node ROOT = new Node('\u0000');
 
+    private final SuffixDateParser parser = new SuffixDateParser();
+
+    private final Map<Poet, List<String>> poetAndPoemListDealt = new ConcurrentHashMap<>(128);
+
+    private final FileHelper fileHelper = new FileHelper();
+
     @Override
     public void help() {
         System.out.println("clean:\n" +
-                "No any arguments" +
+                "[-s]                    Print the poems with the similar titles written by the same poet.\n" +
+                "                        Default is off\n" +
                 "e.g.                    clean");
     }
 
     @Override
-    boolean assertAndSave(ArgReader argReader) {
+    public boolean assertAndSave(ArgReader argReader) {
+        while (argReader.hasNext()) {
+            String arg = argReader.read();
+            if (this.isArg(arg) && Objects.equals(this.getArg(arg), "s")) {
+                FileHelper.PRINT_SIMILAR = true;
+            }
+        }
         return true;
     }
 
     @Override
-    void deal() {
-        Map<Poet, List<String>> poetAndPoemListDealt = new ConcurrentHashMap<>(128);
-        FileHelper fileHelper = new FileHelper();
-        Consumer<Poem> poemConsumer = p -> {
-            boolean[] state = new boolean[]{false, false};
-            List<String> before = p.getLines();
-            List<String> after = new LinkedList<>();
-            before.stream().map(s -> {
-                String result = this.deal(s);
-                if (!s.equals(result)) {
-                    state[1] = true;
-                }
-                return result;
-            }).forEach(i -> {
-                if (i.length() == 0) {
-                    if (state[0]) {
-                        state[1] = true;
-                    }
-                    state[0] = true;
-                } else {
-                    if (state[0]) {
-                        after.add("");
-                    }
-                    after.add(i);
-                    state[0] = false;
-                }
-            });
-            p.setLines(after);
-            fileHelper.write(p);
-            if (state[1]) {
-                List<String> modifiedList = poetAndPoemListDealt.getOrDefault(p.getPoet(), new LinkedList<>());
-                modifiedList.add(p.getTitle());
-                poetAndPoemListDealt.put(p.getPoet(), modifiedList);
-            }
-        };
-        Predicate<Poem> poemPredicate = p -> true;
-        Predicate<Poet> poetPredicate = p -> true;
-        this.iterate(null, poetPredicate, poemConsumer, poemPredicate, true);
+    void deal0() {
+        poetAndPoemListDealt.clear();
+        this.iterate(null, this::poemConsumer, true);
         if (poetAndPoemListDealt.isEmpty()) {
             System.out.println("No poems modified.");
         } else {
@@ -82,7 +59,44 @@ public class Clean extends BaseCommand {
         this.split();
     }
 
-    private String deal(String src) {
+    private void poemConsumer(Poem p) {
+        boolean[] state = new boolean[]{false, false};
+        List<String> before = p.getLines();
+        List<String> after = new LinkedList<>();
+        before.stream().map(s -> {
+            String result = this.deal0(s);
+            if (!s.equals(result)) {
+                state[1] = true;
+            }
+            return result;
+        }).forEach(i -> {
+            if (i.length() == 0) {
+                if (state[0]) {
+                    state[1] = true;
+                }
+                state[0] = true;
+            } else {
+                if (state[0]) {
+                    after.add("");
+                }
+                after.add(i);
+                state[0] = false;
+            }
+        });
+        p.setLines(after);
+        if (after.isEmpty()) {
+            System.out.println("WARNING: Empty lines " + p.getFilePath());
+        }
+        state[1] |= parser.parse(p);
+        fileHelper.write(p);
+        if (state[1]) {
+            List<String> modifiedList = poetAndPoemListDealt.getOrDefault(p.getPoet(), new LinkedList<>());
+            modifiedList.add(p.getTitle());
+            poetAndPoemListDealt.put(p.getPoet(), modifiedList);
+        }
+    }
+
+    private String deal0(String src) {
         StringBuilder sb = new StringBuilder();
         StringBuilder temp = new StringBuilder();
         boolean begin = false;
