@@ -41,7 +41,6 @@ public abstract class BaseCommand {
         } else {
             this.deal();
         }
-
     }
 
     boolean isArg(String s) {

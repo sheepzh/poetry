@@ -42,24 +42,20 @@ public class Clean extends BaseCommand {
                 if (!s.equals(result)) {
                     state[1] = true;
                 }
-
                 return result;
             }).forEach(i -> {
                 if (i.length() == 0) {
                     if (state[0]) {
                         state[1] = true;
                     }
-
                     state[0] = true;
                 } else {
                     if (state[0]) {
                         after.add("");
                     }
-
                     after.add(i);
                     state[0] = false;
                 }
-
             });
             p.setLines(after);
             fileHelper.write(p);
@@ -68,7 +64,6 @@ public class Clean extends BaseCommand {
                 modifiedList.add(p.getTitle());
                 poetAndPoemListDealt.put(p.getPoet(), modifiedList);
             }
-
         };
         Predicate<Poem> poemPredicate = p -> true;
         Predicate<Poet> poetPredicate = p -> true;

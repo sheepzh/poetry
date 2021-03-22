@@ -1,6 +1,5 @@
 package cn.mordernpoem.util;
 
-import cn.mordernpoem.Main;
 import cn.mordernpoem.bean.Poem;
 import cn.mordernpoem.bean.Poet;
 
