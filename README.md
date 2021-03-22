@@ -5,12 +5,17 @@
 	<img src="./doc/image/poet_cloud.png" width="100%">
 </div>
 
-![](https://img.shields.io/badge/%E4%B8%AD%E6%96%87-%E7%8E%B0%E4%BB%A3%E8%AF%97-red)
-![](https://img.shields.io/github/license/sheepzh/poetry)
+
+![](https://img.shields.io/badge/poets-935-orange)
 ![](https://img.shields.io/badge/poems-6884-yellowgreen)
-![](https://img.shields.io/badge/poets-935-lightgrey)
+![](https://img.shields.io/badge/words-1.9M-lightgreen)
+
+</br>
+
+![](https://img.shields.io/github/license/sheepzh/poetry)
 ![](https://img.shields.io/github/repo-size/sheepzh/poetry)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=sheepzh.poetry)
+
 
 # STAR ME！！！！！PLS！！！！！
 

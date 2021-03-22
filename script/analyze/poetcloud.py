@@ -1,4 +1,4 @@
-# 诗人词云生成
+# 诗人词云生成，字数=频率
 # pip install pyecharts
 import os.path as path
 import os
@@ -7,7 +7,7 @@ import random
 import numpy as np
 from pyecharts.charts import WordCloud
 
-origin_dir_path = path.join('..', '..', 'data', 'origin')
+origin_dir_path = path.join('..', '..', 'data')
 
 frequencies = []
 
@@ -31,6 +31,8 @@ for poet_path, dir_list, file_list in os.walk(origin_dir_path):
         frequencies.append((poet_name, frequency))
 
 frequencies.sort(reverse=True, key=lambda bi: bi[1])
+total_word_num = sum(map(lambda t: t[1], frequencies))
+print('Total word number: ' + str(total_word_num))
 frequencies = frequencies[0:200]
 
 wc = (
