@@ -25,4 +25,8 @@ public class YmdFormatterTest {
     public void test4() {
         Assert.assertNull(formatter.format("1992"));
     }
+
+    public void test5() {
+        Assert.assertEquals("20030321", "2003.3.21");
+    }
 }
