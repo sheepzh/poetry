@@ -28,6 +28,10 @@ def read_one_by_one(url):
         next_page_container = NEXT_PAGE_PATTERN.findall(text)
         if len(next_page_container):
             url_temp = next_page_container[0]
+        elif '<div class="code">500</div>' in text:
+            time.sleep(20)
+            # again
+            return read_one_by_one(url)
         else:
             print('Page end')
             print(text)
