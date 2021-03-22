@@ -1,0 +1,15 @@
+﻿data/*/*.bat
+data/*/*.sh
+
+data/**/list.txt
+tool/.idea
+tool/target
+tool/tool.*
+
+**/__pycache__
+**/*.pyc
+
+
+script/analyze/poetcloud.html
+
+script/spider/tmp
