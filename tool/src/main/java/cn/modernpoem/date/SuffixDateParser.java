@@ -18,7 +18,7 @@ public class SuffixDateParser {
     List<DateFormatter> formatters;
 
     public SuffixDateParser() {
-        formatters = Arrays.asList(new YmdFormatter(), new YmFormatter());
+        formatters = Arrays.asList(new YmdFormatter(), new YmFormatter(), new YearFormatter());
     }
 
     public boolean parse(Poem poem) {

@@ -20,8 +20,4 @@ public class YmFormatter implements DateFormatter {
         String month = matcher.group(2);
         return year + DateFormatter.addZeroOf(month);
     }
-
-    public static void main(String []a){
-        System.out.println(new YmFormatter().format("1992"));
-    }
 }
