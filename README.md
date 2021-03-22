@@ -9,9 +9,6 @@
 ![](https://img.shields.io/badge/poets-935-orange)
 ![](https://img.shields.io/badge/poems-6884-yellowgreen)
 ![](https://img.shields.io/badge/words-1.9M-lightgreen)
-
-</br>
-
 ![](https://img.shields.io/github/license/sheepzh/poetry)
 ![](https://img.shields.io/github/repo-size/sheepzh/poetry)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=sheepzh.poetry)
