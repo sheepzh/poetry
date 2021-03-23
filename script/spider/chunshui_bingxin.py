@@ -16,7 +16,7 @@ def get_page_url(page_num):
 TITLE_PATTERN = re.compile(r'^[〇一—二三四五六七八九]{1,3}$')
 
 
-def split(lines):
+def split(set_title, lines):
     title = ''
     author = '冰心'
     url = ''
@@ -26,17 +26,17 @@ def split(lines):
         new_t = TITLE_PATTERN.findall(line)
         if len(new_t):
             if title:
-                write_poem(Profile(url, author, '春水：' + title), content)
+                write_poem(
+                    Profile(url, author, set_title + '：' + title), content)
                 content = ''
             title = new_t[0].replace('—', '一')
         else:
             content = content + '\r\n' + line
     if title:
-        write_poem(Profile(url, author, '春水：' + title), content)
+        write_poem(Profile(url, author,  set_title + '：' + title), content)
 
 
-def read_by_page(page_num):
-    url = get_page_url(page_num)
+def read_by_url(set_title, url, isFirstPage):
     response = requests.get(url)
     response.encoding = 'GBK'
     soup = BeautifulSoup(response.text, 'lxml')
@@ -44,15 +44,21 @@ def read_by_page(page_num):
         '\u3000', '').replace('\r', '')
     lines = line_str.split('\n')[:-1]
 
-    if page_num is 1:
+    if isFirstPage:
         lines = lines[1:]
 
-    split(lines)
+    split(set_title, lines)
 
 
-def main():
+def chunshui():
     for i in range(1, 10):
-        read_by_page(i)
+        read_by_url('春水', get_page_url(i), i is 1)
 
 
-main()
+def fanxing():
+    fanxing_url = 'http://www.dushu369.com/shici/HTML/48366.html'
+    read_by_url('繁星', fanxing_url, True)
+
+
+# chunshui()
+fanxing()
