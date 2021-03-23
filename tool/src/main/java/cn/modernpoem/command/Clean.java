@@ -64,7 +64,10 @@ public class Clean extends BaseCommand {
         List<String> before = p.getLines();
         List<String> after = new LinkedList<>();
         before.stream().map(s -> {
-            String result = this.deal0(s);
+            // remove html elements
+            String htmlRemoved = s.replaceAll("<[^>]+>", "")
+                    .replaceAll("</[\"0-9a-zA-Z\\s]+>", "");
+            String result = this.deal0(htmlRemoved);
             if (!s.equals(result)) {
                 state[1] = true;
             }

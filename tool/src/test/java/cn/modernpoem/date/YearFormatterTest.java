@@ -30,4 +30,9 @@ public class YearFormatterTest {
     public void test5() {
         Assert.assertNull(formatter.format("2000年5月"));
     }
+
+    @Test
+    public void test6() {
+        Assert.assertEquals("1970", formatter.format("一九七O."));
+    }
 }
