@@ -165,7 +165,7 @@ public class Clean extends BaseCommand {
 
     static {
         // INVALID CHAR, REMOVE THEM
-        Arrays.asList("\uff2f", "\ufffd", "●").forEach(c -> VALID_STRING_MAP.put(c, ""));
+        Arrays.asList("\uff2f", "\ufffd", "●", "\uE003").forEach(c -> VALID_STRING_MAP.put(c, ""));
         Arrays.asList("　", "\uE5E5").forEach(c -> VALID_STRING_MAP.put(c, " "));
 
         VALID_STRING_MAP.put("--", "——");
