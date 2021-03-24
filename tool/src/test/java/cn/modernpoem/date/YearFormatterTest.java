@@ -35,4 +35,9 @@ public class YearFormatterTest {
     public void test6() {
         Assert.assertEquals("1970", formatter.format("一九七O."));
     }
+
+    @Test
+    public void test7() {
+        Assert.assertEquals("1970", formatter.format("（一九七O.）"));
+    }
 }
