@@ -52,19 +52,32 @@ public abstract class BaseCommand implements ArgAssertable {
         return this.invalidArg("Invalid argument: -" + c);
     }
 
+    boolean error(String msg) {
+        this.err = msg;
+        return false;
+    }
+
     void iterate(Consumer<Poet> poetConsumer, Consumer<Poem> poemConsumer) {
-        this.iterate(poetConsumer, poemConsumer, false);
+        this.iterate(null, poetConsumer, poemConsumer, false);
     }
 
     void iterate(Consumer<Poet> poetConsumer,
                  Consumer<Poem> poemConsumer,
                  boolean multiThread) {
+        this.iterate(null, poetConsumer, poemConsumer, multiThread);
+    }
+
+    void iterate(Predicate<Poet> poetPredicate,
+                 Consumer<Poet> poetConsumer,
+                 Consumer<Poem> poemConsumer,
+                 boolean multiThread) {
+        Predicate<Poet> finalPoetPredicate = poetPredicate == null ? foo -> true : poetPredicate;
         Predicate<Poem> finalPredicate = a -> true;
 
         FileHelper fileHelper = new FileHelper();
         List<Poet> poets = fileHelper.getAll();
         Consumer<Thread> dealMethod = multiThread ? Thread::start : Thread::run;
-        List<Thread> threads = poets.stream()
+        List<Thread> threads = poets.stream().filter(finalPoetPredicate)
                 .map(p -> new Thread(() -> {
                     List<Poem> poems = fileHelper.findByPoet(p);
                     if (poetConsumer != null) {

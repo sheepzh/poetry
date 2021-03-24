@@ -4,9 +4,11 @@ import cn.modernpoem.bean.Poem;
 import cn.modernpoem.bean.Poet;
 import cn.modernpoem.date.SuffixDateParser;
 import cn.modernpoem.util.FileHelper;
+import cn.modernpoem.util.StringUtils;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -22,20 +24,42 @@ public class Clean extends BaseCommand {
 
     private final FileHelper fileHelper = new FileHelper();
 
+    private String poetName = null;
+
     @Override
     public void help() {
         System.out.println("clean:\n" +
                 "[-s]                    Print the poems with the similar titles written by the same poet.\n" +
                 "                        Default is off\n" +
+                "[-p poetName]           Specify by poet's name\n"+
                 "e.g.                    clean");
     }
 
     @Override
     public boolean assertAndSave(ArgReader argReader) {
+        boolean writerReady = false;
         while (argReader.hasNext()) {
             String arg = argReader.read();
-            if (this.isArg(arg) && Objects.equals(this.getArg(arg), "s")) {
-                FileHelper.PRINT_SIMILAR = true;
+            if (this.isArg(arg)) {
+                String argCode = this.getArg(arg);
+                if (writerReady) {
+                    this.error("except poet name, but " + arg);
+                    return false;
+                }
+                switch (argCode) {
+                    case "s":
+                        FileHelper.PRINT_SIMILAR = true;
+                        break;
+                    case "p":
+                        writerReady = true;
+                        break;
+                    default:
+                        return error(arg);
+                }
+            } else if (writerReady) {
+                this.poetName = arg;
+            } else {
+                return error(arg);
             }
         }
         return true;
@@ -44,7 +68,10 @@ public class Clean extends BaseCommand {
     @Override
     void deal0() {
         poetAndPoemListDealt.clear();
-        this.iterate(null, this::poemConsumer, true);
+        Predicate<Poet> poetPredicate = StringUtils.isBlank(poetName)
+                ? foo -> true
+                : poet -> Objects.equals(poet.getName(), poetName);
+        this.iterate(poetPredicate, null, this::poemConsumer, true);
         if (poetAndPoemListDealt.isEmpty()) {
             System.out.println("No poems modified.");
         } else {
@@ -118,8 +145,8 @@ public class Clean extends BaseCommand {
 
                     temp.setLength(0);
                     now = ROOT;
-                    lastBlank = true;
                 }
+                lastBlank = true;
             } else {
                 if (lastBlank && sb.length() > 0) {
                     sb.append(' ');
