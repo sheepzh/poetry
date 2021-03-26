@@ -10,6 +10,6 @@ tool/tool.*
 **/*.pyc
 
 
-script/analyze/poetcloud.html
+script/analyze/*.html
 
 script/spider/tmp
