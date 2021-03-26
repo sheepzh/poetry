@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  * @author zhy
  */
 public class YmdFormatter implements DateFormatter {
-    private final static Pattern PATTERN = Pattern.compile("^(\\d{4})[.．/\\-年]?([01]?\\d)[.．/\\-月](\\d{1,2})[.．日]?[于在]?.{0,2}$");
+    private final static Pattern PATTERN = Pattern.compile("^[(（]?\\s*(\\d{4})[.,，．/\\-年]?([01]?\\d)[.,，．/\\-月](\\d{1,2})[.．日]?[，于在]?.{0,4}\\s*[)）]?$");
 
     @Override
     public String format(String lastLine) {
