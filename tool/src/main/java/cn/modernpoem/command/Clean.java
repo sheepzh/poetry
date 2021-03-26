@@ -31,7 +31,7 @@ public class Clean extends BaseCommand {
         System.out.println("clean:\n" +
                 "[-s]                    Print the poems with the similar titles written by the same poet.\n" +
                 "                        Default is off\n" +
-                "[-p poetName]           Specify by poet's name\n"+
+                "[-p poetName]           Specify by poet's name\n" +
                 "e.g.                    clean");
     }
 
@@ -219,6 +219,7 @@ public class Clean extends BaseCommand {
         VALID_STRING_MAP.put("９", "9");
         VALID_STRING_MAP.put("○", "〇");
         VALID_STRING_MAP.put(",", "，");
+        VALID_STRING_MAP.put("／", "/");
 
         VALID_STRING_MAP.keySet().forEach(i -> ROOT.add(i.toCharArray(), 0));
     }
