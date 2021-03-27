@@ -13,3 +13,5 @@ tool/tool.*
 script/analyze/*.html
 
 script/spider/tmp
+
+script/colab/*.txt
