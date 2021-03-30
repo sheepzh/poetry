@@ -34,7 +34,7 @@
 |
 +++ script   # 相关 Python 脚本
 |	|
-|   +++ analyze     # 词云生成脚本
+|       +++ analyze     # 词云生成脚本
 |	|
 |	+++ simplify    # 繁体转简体脚本，以及转换词典
 |       |
