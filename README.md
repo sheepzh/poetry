@@ -6,8 +6,8 @@
 </div>
 
 
-![](https://img.shields.io/badge/poets-1058-orange)
-![](https://img.shields.io/badge/poems-8832-yellowgreen)
+![](https://img.shields.io/badge/poets-1059-orange)
+![](https://img.shields.io/badge/poems-8945-yellowgreen)
 ![](https://img.shields.io/badge/words-2.19M-lightgreen)
 ![](https://img.shields.io/github/license/sheepzh/poetry)
 ![](https://img.shields.io/github/repo-size/sheepzh/poetry)
@@ -36,11 +36,11 @@
 |
 +++ script   # 相关 Python 脚本
 |	|
-|       +++ analyze     # 词云生成脚本
+|   +++ analyze     # 词云生成脚本
 |	|
 |	+++ simplify    # 繁体转简体脚本，以及转换词典
-|       |
-|       +++ spider      # 诗歌爬虫脚本
+|   |
+|   +++ spider      # 诗歌爬虫脚本
 |
 +++ tool     # 命令行工具源码
 |
