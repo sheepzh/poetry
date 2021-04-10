@@ -22,9 +22,6 @@ public class SuffixDateParser {
     }
 
     public boolean parse(Poem poem) {
-        if (!StringUtils.isBlank(poem.getDate())) {
-            return false;
-        }
         List<String> contents = poem.getLines();
         if (contents.isEmpty()) {
             return false;
