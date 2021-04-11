@@ -1,3 +1,10 @@
 {
+    "python.formatting.provider": "autopep8",
+    "python.formatting.autopep8Args": [
+        "--max-line-length=200",
+        "--ignore",
+        // Do not swap the lines
+        "E402"
+    ],
     "git.ignoreLimitWarning": true
 }
