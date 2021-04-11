@@ -79,4 +79,4 @@ def two_regrex(arr): return arr[0].strip() + '——' + arr[1].strip()
 
 
 split_by_regrex('城镇：散落的尘嚣或软语（组诗）', r'^《(.*)》$', prefix='', date='201204')
-# split_by_regrex('小淡词（连载・八）', r'^《小淡词 (\d{1,3})》(.*)$', date='201211', prefix='小淡词', regrex_map=two_regrex)
+# split_by_regrex('小淡词（连载·八）', r'^《小淡词 (\d{1,3})》(.*)$', date='201211', prefix='小淡词', regrex_map=two_regrex)
