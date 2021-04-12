@@ -1,6 +1,8 @@
 
 # 华语现代诗歌集合
 
+[![Join the chat at https://gitter.im/poetry-room/community](https://badges.gitter.im/poetry-room/community.svg)](https://gitter.im/poetry-room/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <div align="center">
 	<img src="./doc/image/poet_cloud.png" width="100%">
 </div>
