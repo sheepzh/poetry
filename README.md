@@ -1,7 +1,6 @@
 
 # 华语现代诗歌集合
 
-[![Join the chat at https://gitter.im/poetry-room/community](https://badges.gitter.im/poetry-room/community.svg)](https://gitter.im/poetry-room/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 <div align="center">
 	<img src="./doc/image/poet_cloud.png" width="100%">
@@ -13,6 +12,7 @@
 ![](https://img.shields.io/badge/words-3.66M-lightgreen)
 ![](https://img.shields.io/github/license/sheepzh/poetry)
 ![](https://img.shields.io/github/repo-size/sheepzh/poetry)
+[![Join the chat at https://gitter.im/poetry-room/community](https://badges.gitter.im/poetry-room/community.svg)](https://gitter.im/poetry-room/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=sheepzh.poetry)
 
 
