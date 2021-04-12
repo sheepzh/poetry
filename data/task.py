@@ -62,7 +62,7 @@ def split_by_titles(file_name, titles=[], prefix='', date=None):
             if l > ti:
                 tn = titles[ti]
             else:
-                tn = ''
+                tn = None
         else:
             content.append(line)
 
