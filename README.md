@@ -10,7 +10,7 @@
 ![](https://img.shields.io/github/license/sheepzh/poetry)
 ![](https://img.shields.io/github/repo-size/sheepzh/poetry)
 [![Join the chat at https://gitter.im/poetry-room/community](https://badges.gitter.im/poetry-room/community.svg)](https://gitter.im/poetry-room/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-![visitors](https://visitor-badge.glitch.me/badge?page_id=sheepzh.poetry1)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=sheepzh.poetry)
 
 # STAR ME！！！！！PLS！！！！！
 
@@ -109,8 +109,8 @@ curl "$API_BASE/poems?poet=海子&title=九月&wd=草原&pn=1&ps=2"
 |   +++ analyze     # 词云生成脚本
 |	|
 |	+++ simplify    # 繁体转简体脚本，以及转换词典
-|   |
-|   +++ spider      # 诗歌爬虫脚本
+|       |
+|       +++ spider      # 诗歌爬虫脚本
 |
 +++ tool            # 命令行工具源码
 |
