@@ -106,11 +106,11 @@ curl "$API_BASE/poems?poet=海子&title=九月&wd=草原&pn=1&ps=2"
 |
 +++ script          # 相关 Python 脚本
 |	  |
-|   +++ analyze     # 词云生成脚本
+|         +++ analyze     # 词云生成脚本
 |	  |
 |	  +++ simplify    # 繁体转简体脚本，以及转换词典
-|       |
-|       +++ spider      # 诗歌爬虫脚本
+|         |
+|         +++ spider      # 诗歌爬虫脚本
 |
 +++ tool            # 命令行工具源码
 |
