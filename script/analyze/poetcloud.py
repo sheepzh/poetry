@@ -2,17 +2,29 @@
 # pip install pyecharts
 import os.path as path
 import os
+from math import log10
 
 import random
 import numpy as np
 import math
 from pyecharts.charts import WordCloud
 
-adjust = {
-    '陈宗华': 0.05,
-    '槐蓝言白': 0.1,
-    '龙羽生': 0.8
-}
+
+adjust = {}
+
+file = open('./search_count.csv', 'r')
+segs = list(map(lambda line: line.split(','), file.readlines()[1:]))
+count_max = 0
+for seg in segs:
+    count = int(seg[1])
+    if count > count_max:
+        count_max = count
+print('search count max', count_max)
+count_max_base = log10(count_max + 2)
+
+for seg in segs:
+    adjust_val = log10(int(seg[1]) + 2) / count_max_base
+    adjust[seg[0]] = adjust_val
 
 origin_dir_path = path.join('..', '..', 'data')
 
@@ -44,8 +56,8 @@ for poet_path, dir_list, file_list in os.walk(origin_dir_path):
         frequency = frequency + poem_count * 30
         if poet_name in adjust:
             rate = adjust.get(poet_name)
-            print('Adjusted ' + poet_name + ' with ' + str(rate))
-            frequency = math.floor(frequency*rate)
+            # print('Adjusted ' + poet_name + ' with ' + str(rate))
+            frequency = math.floor(frequency * rate)
         frequencies.append((poet_name, frequency))
 
 frequencies.sort(reverse=True, key=lambda bi: bi[1])
