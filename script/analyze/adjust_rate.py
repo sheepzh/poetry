@@ -83,6 +83,6 @@ async def main():
         file.write('\r\n{}'.format(line))
         file.close()
         # time.sleep(10)
-    browser.close()
+        browser.close()
 
 asyncio.get_event_loop().run_until_complete(main())
