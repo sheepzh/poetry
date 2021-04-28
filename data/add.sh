@@ -5,6 +5,7 @@ content=title:$1\r\ndate:$2
 
 if [ ! -f "$filePath" ];then
   echo title:$1\\r\\ndate:$2 >> $filePath
+  code $filePath
 else 
   echo 'File exists. Please delete it manually, not overwrite it.'
 fi
