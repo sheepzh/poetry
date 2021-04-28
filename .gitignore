@@ -14,5 +14,6 @@ tool/tool.*
 script/analyze/*.html
 
 script/spider/tmp
+script/spider/wrs-temp
 
 script/colab/*.txt
