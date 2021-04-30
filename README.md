@@ -5,8 +5,8 @@
 </div>
 
 ![](https://img.shields.io/badge/poets-1338-orange)
-![](https://img.shields.io/badge/poems-20.0K-yellowgreen)
-![](https://img.shields.io/badge/words-4.10M-lightgreen)
+![](https://img.shields.io/badge/poems-20.2K-yellowgreen)
+![](https://img.shields.io/badge/words-4.14M-lightgreen)
 ![](https://img.shields.io/github/license/sheepzh/poetry)
 ![](https://img.shields.io/github/repo-size/sheepzh/poetry)
 [![Join the chat at https://gitter.im/poetry-room/community](https://badges.gitter.im/poetry-room/community.svg)](https://gitter.im/poetry-room/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
