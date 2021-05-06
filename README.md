@@ -1,4 +1,4 @@
-# 华语现代诗歌集合
+# 华语现代诗歌语料库
 
 <div align="center">
 	<img src="./doc/image/poet_cloud.png" width="100%">
