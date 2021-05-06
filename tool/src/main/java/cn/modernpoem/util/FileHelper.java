@@ -128,12 +128,19 @@ public class FileHelper {
             for (int j = i + 1; j < size; j++) {
                 Poem p2 = poems.get(j);
                 String title2 = p2.getTitle();
+
+                String prefix = EditDistance.maxPrefixOf(title1, title2);
+                if (prefix.contains("：")) {
+                    // The same title
+                    break;
+                }
+
                 int l2 = title2.length();
 
                 boolean similar = false;
                 if (l1 > 1 && l2 > 1) {
-                    boolean contains12 = title1.startsWith(title2);
-                    boolean contains21 = title2.startsWith(title1);
+                    boolean contains12 = title1.startsWith(title2) && l1 - l2 < 2;
+                    boolean contains21 = title2.startsWith(title1) && l2 - l1 < 2;
                     if (contains21 || contains12) {
                         similar = true;
                     }

@@ -23,4 +23,14 @@ public class EditDistance {
         }
         return dp[word1.length()][word2.length()];
     }
+
+    public static String maxPrefixOf(String word1, String word2) {
+        int length = Math.min(word1.length(), word2.length());
+        for (int i = 0; i < length; i++) {
+            if (word1.charAt(i) != word2.charAt(i)) {
+                return word1.substring(0, i);
+            }
+        }
+        return word1.substring(0, length);
+    }
 }

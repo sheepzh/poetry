@@ -152,10 +152,6 @@ public class Count extends BaseCommand {
 
     }
 
-    public static void main(String[] a) {
-        new Count().help();
-    }
-
     /**
      * 诗歌内容处理
      */
