@@ -1,4 +1,4 @@
-# 华语现代诗歌集合
+# 华语现代诗歌语料库
 
 <div align="center">
 	<img src="./doc/image/poet_cloud.png" width="100%">
@@ -22,6 +22,7 @@
 - 数据格式见 [<u>data/README.md</u>](./data/README.md)
 - 反馈
   - ISSUES：[<u>Github</u>](https://github.com/sheepzh/poetry/issues) | [<u>码云</u>](https://gitee.com/make-zero/poetry/issues)
+  - 侵删联系：returnzhy1996@outlook.com
 
 
 ## 在线阅读
