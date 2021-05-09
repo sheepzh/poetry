@@ -53,8 +53,12 @@ def split_by_titles(file_name, titles=[], prefix='', date=None):
         lines = file.readlines()[3:]
     for line in lines:
         line = line.strip()
+        if not line and ti == 1:
+            continue
         if line == tn:
             if t:
+                if ti == 1:
+                    content = content[1:]
                 write(t, content, prefix, date)
             content = []
             t = tn
