@@ -2,7 +2,7 @@
 
 首先 fork 自己的仓库，然后 clone 到本地。
 
-> 建议使用 [VS Code](https://code.visualstudio.com)
+> 建议使用 [VS Code](https://code.visualstudio.com) 作为文本编辑器
 
 ## 1. 新增数据
 
