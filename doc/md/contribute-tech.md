@@ -2,7 +2,7 @@
 
 首先 fork 自己的仓库，然后 clone 到本地。
 
-> 建议使用 [VS Code](https://code.visualstudio.com)
+> 建议使用 [VS Code](https://code.visualstudio.com) 作为文本编辑器
 
 ## 1. 新增数据
 
@@ -43,9 +43,9 @@ copy ../task.py ./
 
 ```
 # 使用上述的 add 脚本
-./add.sh [诗歌名] [创作时间]
+./add.sh [诗歌名] [创作时间，可省略]
 # Windows
-./add.bat [诗歌名] [创作时间]
+./add.bat [诗歌名] [创作时间，可省略]
 ```
 
 4. 打开文件，粘贴
