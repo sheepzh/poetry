@@ -1,5 +1,5 @@
 import re
-
+import os
 
 def write(title, content, prefix=None, date=None):
     print(title)
@@ -7,9 +7,9 @@ def write(title, content, prefix=None, date=None):
         date = ''
     if prefix:
         title = prefix + '：' + title
-    with open(title + '.pt', 'w')as to_w:
+    with open(title + '.pt', 'w', encoding='UTF-8')as to_w:
         to_w.writelines(
-            'title:' + title + '\r\ndate:' + date + '\r\n' + '\r\n'.join(content))
+            'title:' + title + '\n' + 'date:' + date + '\n' + '\n'.join(content))
 
 
 def split_by_regrex(file_name, regrex_str, prefix='', date=None, title_map=None, regrex_map=None):
@@ -17,7 +17,7 @@ def split_by_regrex(file_name, regrex_str, prefix='', date=None, title_map=None,
     content = []
     regrex = re.compile(regrex_str)
     index = 1
-    with open(file_name + '.pt', 'r') as file:
+    with open(file_name + '.pt', 'r', encoding='UTF-8') as file:
         lines = file.readlines()[3:]
 
     for line in lines:
@@ -49,7 +49,7 @@ def split_by_titles(file_name, titles=[], prefix='', date=None):
     ti = 1
     tn = titles[ti]
 
-    with open(file_name + '.pt', 'r') as file:
+    with open(file_name + '.pt', 'r', encoding='UTF-8') as file:
         lines = file.readlines()[3:]
     for line in lines:
         line = line.strip()
