@@ -1,7 +1,7 @@
 @echo off
 
-set vmOptions="-Dfile.encoding=UTF-8 -DpoemDir=./data"
-set jarpath=.\lib\tool.jar
+set vmOptions="-Dfile.encoding=UTF-8" "-DpoemDir=.\data"
+set jarpath=.\tool\target\tool.jar
 
 set allparam=
 
@@ -27,4 +27,5 @@ if "%allparam:~0,1%"==" " set "allparam=%allparam:~1%"&goto intercept_left
 if "%allparam:~-1%"==" " set "allparam=%allparam:~0,-1%"&goto intercept_right
 
 :eof
+
 java %vmOptions% -jar %jarpath% %allparam%
