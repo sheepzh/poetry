@@ -1,23 +1,23 @@
 @echo off
 
-REM �뽫�ýű��ƶ��������ʫ��Ŀ¼����ʹ��
-REM %1%=ʫ�����
-REM %2%=��������
+REM 请将该脚本移动到具体的诗人目录下再使用
+REM %1%=诗歌标题
+REM %2%=创作日期
 
 if "%1%"=="" (
-echo ������ʫ������
+echo 请输入诗歌名称
 goto entrance
 ) 
 
 set fileName=%1%.pt
 
 if exist %fileName% (
-echo �ļ��Ѵ��ڡ����踲�ǣ�����ʹ����������ɾ�����ļ�
+echo 文件已存在。如需覆盖，请先使用下述命令删除旧文件
 echo del %fileName%
 goto entrance
 )
 
-REM ʹ��UTF-8
+REM 使用UTF-8
 chcp 65001
 
 set firstLine=title:%1%
