@@ -46,9 +46,9 @@ async def main():
 
     exist = {}
     if not os.path.exists('search_count.csv'):
-        file = open('search_count.csv', 'a')
+        file = open('search_count.csv', 'a', encoding='utf-8')
     else:
-        file = open('search_count.csv', 'r')
+        file = open('search_count.csv', 'r', encoding='utf-8')
         lines = file.readlines()
         if len(lines):
             for line in lines[1:]:
@@ -57,8 +57,8 @@ async def main():
             file.close()
         else:
             file.close()
-            file = open('search_count.csv', 'a')
-            file.write('name, google_scholar')
+            file = open('search_count.csv', 'a', encoding='utf-8')
+            file.write('name, google_scholar', encoding='utf-8')
             file.close()
     data_path = os.path.join('..', '..', 'data')
     for dir_ in os.listdir(data_path):
@@ -79,8 +79,8 @@ async def main():
         line = '{},{}'.format(name_query, google_scholar_count)
         print(line)
 
-        file = open('search_count.csv', 'a')
-        file.write('\r\n{}'.format(line))
+        file = open('search_count.csv', 'a', encoding='utf-8')
+        file.write('\n{}'.format(line))
         file.close()
         # time.sleep(10)
         browser.close()

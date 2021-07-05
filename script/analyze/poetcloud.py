@@ -4,15 +4,13 @@ import os.path as path
 import os
 from math import log10
 
-import random
-import numpy as np
 import math
 from pyecharts.charts import WordCloud
 
 
 adjust = {}
 
-file = open('./search_count.csv', 'r')
+file = open('./search_count.csv', 'r', encoding='utf-8')
 segs = list(map(lambda line: line.split(','), file.readlines()[1:]))
 count_max = 0
 for seg in segs:
