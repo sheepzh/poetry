@@ -90,7 +90,7 @@ public class Count extends BaseCommand {
         Map<Poem, List<String>> appear = new HashMap<>(16);
         Consumer<Poem> poem2Poet;
         if (!this.all) {
-            Consumer<Poem> poemConsumer = new PoemConsumer(title, query, titleContains, appear);
+            PoemHandler poemConsumer = new PoemConsumer(title, query, titleContains, appear, !this.poemC);
             this.iterate(null, poemConsumer);
             if (this.poemC) {
                 if (this.title) {
@@ -146,7 +146,7 @@ public class Count extends BaseCommand {
             AtomicInteger pc = new AtomicInteger();
             poem2Poet = p -> mc.getAndIncrement();
             Consumer<Poet> poetConsumer = p -> pc.getAndIncrement();
-            this.iterate(poetConsumer, poem2Poet);
+            this.iterate(poetConsumer, PoemHandler.of(poem2Poet, true));
             System.out.printf("%s poem(s) written by %s poet(s) are included.%n", mc.get(), pc.get());
         }
 
@@ -157,11 +157,12 @@ public class Count extends BaseCommand {
      */
     @AllArgsConstructor
     @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-    private static class PoemConsumer implements Consumer<Poem> {
+    private static class PoemConsumer implements PoemHandler {
         boolean title;
         String query;
         List<Poem> titleContains;
         Map<Poem, List<String>> appear;
+        boolean ignoreContent;
 
         @Override
         public void accept(Poem p) {
@@ -174,6 +175,11 @@ public class Count extends BaseCommand {
             if (!appearLines.isEmpty()) {
                 appear.put(p, appearLines);
             }
+        }
+
+        @Override
+        public boolean ignoreContent() {
+            return ignoreContent;
         }
     }
 }

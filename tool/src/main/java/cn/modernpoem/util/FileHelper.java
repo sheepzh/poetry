@@ -59,7 +59,7 @@ public class FileHelper {
         return poetList;
     }
 
-    public List<Poem> findByPoet(Poet poet) {
+    public List<Poem> findByPoet(Poet poet, boolean ignoreContent) {
         File file = new File(ROOT_DIR_PATH + "/" + poet.getDirName());
         String[] childFile = file.list();
         if (childFile == null) {
@@ -73,40 +73,45 @@ public class FileHelper {
             }
 
             File f = new File(ROOT_DIR_PATH + "/" + poet.getDirName() + "/" + s);
-            try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(f));
-                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-                Poem poem = new Poem();
-                poem.setPoet(poet);
-                int infoFinish = 2;
-                boolean contentStart = false;
+            Poem poem = new Poem();
+            poem.setPoet(poet);
+            if (ignoreContent) {
+                poem.setTitle(s.substring(0, s.length() - 3));
+            } else {
+                try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(f));
+                     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
-                String ss;
-                while ((ss = reader.readLine()) != null) {
-                    if (ss.startsWith("title")) {
-                        String inTitle = ss.substring(6).trim();
-                        poem.setTitle(inTitle);
-                        if (!(inTitle + ".pt").equals(s)) {
-                            System.out.println("WARNING: Bad file name " + poet.getDirName() + File.separator + s);
-                        }
-                        --infoFinish;
-                    } else if (ss.startsWith("date")) {
-                        poem.setDate(ss.substring(5).trim());
-                        --infoFinish;
-                    } else if (infoFinish == 0) {
-                        if (contentStart) {
-                            poem.lineAppend(ss);
-                        } else if (!ss.trim().isEmpty()) {
-                            poem.lineAppend(ss);
-                            contentStart = true;
+                    int infoFinish = 2;
+                    boolean contentStart = false;
+
+                    String ss;
+                    while ((ss = reader.readLine()) != null) {
+                        if (ss.startsWith("title")) {
+                            // 使用文件内的名称
+                            String inTitle = ss.substring(6).trim();
+                            poem.setTitle(inTitle);
+                            if (!(inTitle + ".pt").equals(s)) {
+                                System.out.println("WARNING: Bad file name " + poet.getDirName() + File.separator + s);
+                            }
+                            --infoFinish;
+                        } else if (ss.startsWith("date")) {
+                            poem.setDate(ss.substring(5).trim());
+                            --infoFinish;
+                        } else if (infoFinish == 0) {
+                            if (contentStart) {
+                                poem.lineAppend(ss);
+                            } else if (!ss.trim().isEmpty()) {
+                                poem.lineAppend(ss);
+                                contentStart = true;
+                            }
                         }
                     }
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
                 }
-
-                if (poem.getTitle() != null) {
-                    poems.add(poem);
-                }
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
+            }
+            if (poem.getTitle() != null) {
+                poems.add(poem);
             }
         }
         if (PRINT_SIMILAR) {

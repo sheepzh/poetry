@@ -57,19 +57,19 @@ public abstract class BaseCommand implements ArgAssertable {
         return false;
     }
 
-    void iterate(Consumer<Poet> poetConsumer, Consumer<Poem> poemConsumer) {
-        this.iterate(null, poetConsumer, poemConsumer, false);
+    void iterate(Consumer<Poet> poetConsumer, PoemHandler poemHandler) {
+        this.iterate(null, poetConsumer, poemHandler, false);
     }
 
     void iterate(Consumer<Poet> poetConsumer,
-                 Consumer<Poem> poemConsumer,
+                 PoemHandler poemHandler,
                  boolean multiThread) {
-        this.iterate(null, poetConsumer, poemConsumer, multiThread);
+        this.iterate(null, poetConsumer, poemHandler, multiThread);
     }
 
     void iterate(Predicate<Poet> poetPredicate,
                  Consumer<Poet> poetConsumer,
-                 Consumer<Poem> poemConsumer,
+                 PoemHandler poemHandler,
                  boolean multiThread) {
         Predicate<Poet> finalPoetPredicate = poetPredicate == null ? foo -> true : poetPredicate;
         Predicate<Poem> finalPredicate = a -> true;
@@ -79,12 +79,12 @@ public abstract class BaseCommand implements ArgAssertable {
         Consumer<Thread> dealMethod = multiThread ? Thread::start : Thread::run;
         List<Thread> threads = poets.stream().filter(finalPoetPredicate)
                 .map(p -> new Thread(() -> {
-                    List<Poem> poems = fileHelper.findByPoet(p);
+                    List<Poem> poems = fileHelper.findByPoet(p, poemHandler != null && poemHandler.ignoreContent());
                     if (poetConsumer != null) {
                         poetConsumer.accept(p);
                     }
-                    if (poemConsumer != null) {
-                        poems.stream().filter(finalPredicate).forEach(poemConsumer);
+                    if (poemHandler != null) {
+                        poems.stream().filter(finalPredicate).forEach(poemHandler);
                     }
                 })).collect(Collectors.toList());
         threads.forEach(dealMethod);
