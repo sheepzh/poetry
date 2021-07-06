@@ -140,7 +140,7 @@ def resolve_poem(url, failed_urls):
             author = author.split('（')[0].split(
                 '(')[0].split('，')[0].split(',')[0]
 
-            if '·' in author or '•' in author or '[' in author or '［' in author:
+            if '·' in author or '•' in author or '[' in author or '[' in author:
                 print('not mofailed_urlsdern chinese poet: ' + author)
             else:
                 print('PARSED: ' + url + ' ' + title + ' @ ' + author)

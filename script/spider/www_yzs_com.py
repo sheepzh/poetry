@@ -18,7 +18,11 @@ def get_list():
     soup = BeautifulSoup(text, "lxml")
     div_list = soup.find_all("div", class_="fontlist")
     poet_list = []
+    index = 0
     for div in div_list:
+        index += 1
+        if index < 4:
+            continue
         links = div.find_all("a")
         for link in links:
             poet_list.append((link.get("href"), link.text))
@@ -80,8 +84,15 @@ def process_poems(href, name):
         if not content:
             print("empty", HOME_PAGE + href, name, title)
         write_poem(Profile(href=HOME_PAGE + href, author=name, title=title), content)
+
+    pagination = soup.find('div', class_='list_page')
+    for a in pagination.find_all('a'):
+        if a.text.strip() == '下一页':
+            print('下一页')
+            process_poems(a.get('href'), name)
+            return
         # quit()
-    # quit()
+        # quit()
 
 
 def main():
@@ -90,6 +101,6 @@ def main():
         process_poems(poet[0], poet[1])
 
 
-# main()
+main()
 
-process_poems('zswlistinfo-245-0.html', '陈维')
+# process_poems('zswlistinfo-17-0.html', '测试')
