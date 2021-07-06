@@ -2,7 +2,7 @@ import os
 import sys
 from langconv import Converter
 
-path = os.path.join('..', '..', 'data', 'origin')
+path = os.path.join('..', '..', 'data')
 
 argv = sys.argv
 if len(argv) > 1:
