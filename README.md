@@ -28,7 +28,7 @@
 
 ## 在线阅读
 
-- 简陋的[阅读页面](https://poetry-page.vercel.app/)，技术编外人员请点它。
+- 简陋的[阅读页面](https://www.chinese-poetry.org/)，技术编外人员请点它。
 - 简单的 RESTful API，详见 [API 文档](./doc/md/api.md)。你也可以根据项目内提供的数据自建。
 
 ## 如何贡献
