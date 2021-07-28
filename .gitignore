@@ -13,7 +13,7 @@ tool/tool.*
 
 script/analyze/*.html
 
-script/spider/tmp
-script/spider/wrs-temp
+script/spider
+script/spider
 
 script/colab/*.txt
