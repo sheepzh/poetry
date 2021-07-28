@@ -2,6 +2,7 @@
 from pypinyin import lazy_pinyin
 import os
 import shutil
+import requests
 
 
 class Profile:
@@ -43,3 +44,12 @@ def remove_tmp_all():
         shutil.rmtree(os.path.join(".", "tmp"))
     except FileNotFoundError:
         pass
+
+
+def get_html(url, encoding=''):
+    response = requests.get(url)
+    if encoding:
+        response.encoding = encoding
+    if response.status_code == 404:
+        return None
+    return response.text
