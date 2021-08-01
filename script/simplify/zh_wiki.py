@@ -79,6 +79,7 @@ translated = {
     # Signs start
     "－": "—",
     "──": "——",  # not same
+    "‧": "·",
     # Signs end
 
     "菸": "烟",
