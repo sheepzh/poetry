@@ -42,3 +42,6 @@
 - [Visitor Badage](https://visitor-badge.laobi.icu)
 - [Vercel](https://vercel.com/)
 
+## 友链
+
+[诗歌 WIKI](https://poemwiki.org/)

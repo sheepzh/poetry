@@ -16,4 +16,5 @@ script/analyze/*.html
 script/spider
 script/spider
 
-script/colab/*.txt
+script/export/*.txt
+script/export/*.sql
