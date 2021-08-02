@@ -92,4 +92,3 @@ for root, dirs, _ in os.walk(os.path.join("..", "..", "data")):
                 poem_title = file_name[:-3]
                 file_path = os.path.join(root1, file_name)
                 process_file(poet_name, poem_title, file_path)
-        quit()
