@@ -1,3 +1,6 @@
+"""
+    Package data for google colab
+"""
 import os
 
 file_path = os.path.join('.', 'colab_file.txt')
@@ -18,7 +21,7 @@ with open(file_path, 'a') as to_write:
                     with open(os.path.join(root1, file_path), 'r') as poem_file:
                         lines = poem_file.readlines()[2:]
                         lines = list(filter(lambda l: len(l), lines))
-                        lines = list(map(lambda l: l.replace('',' '), lines))
+                        lines = list(map(lambda l: l.replace('', ' '), lines))
                         to_write.writelines(''.join(lines))
                         count = count + 1
-                        print(count/100)
+                        print(count / 100)
