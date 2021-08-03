@@ -6,7 +6,7 @@
 
 ![](https://img.shields.io/badge/poets-2127-orange)
 ![](https://img.shields.io/badge/poems-43.7K-yellowgreen)
-![](https://img.shields.io/badge/words-8.62M-lightgreen)
+![](https://img.shields.io/badge/words-8.63M-lightgreen)
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=github_sheepzh_poetry)
 ![](https://img.shields.io/github/license/sheepzh/poetry)
 ![](https://img.shields.io/github/repo-size/sheepzh/poetry)
