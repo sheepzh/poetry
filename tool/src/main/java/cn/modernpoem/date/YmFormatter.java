@@ -3,6 +3,7 @@ package cn.modernpoem.date;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @author zhy
@@ -27,10 +28,10 @@ public class YmFormatter implements DateFormatter {
         if (!matcher.matches()) {
             return null;
         }
-        String year = matcher.group(1).chars().mapToObj(DateFormatter::toNumber).reduce((a, b) -> a + b).orElse("");
-        String month = matcher.group(2).chars().mapToObj(DateFormatter::toNumber).reduce((a, b) -> a + b).orElse("");
+        String year = matcher.group(1).chars().mapToObj(DateFormatter::toNumber).collect(Collectors.joining());
+        String month = matcher.group(2).chars().mapToObj(DateFormatter::toNumber).collect(Collectors.joining());
         if (Objects.equals(month, "元") || Objects.equals(month, "正")) {
-            // Replace Chinese calendar with international calender
+            // Replace Chinese calendar with international calendar
             month = "01";
         } else if (month.length() == 2) {
             month = month.replaceAll("十", "1");
