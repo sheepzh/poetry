@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
  * @author zhy
  */
 public class YmFormatter implements DateFormatter {
-    private final static Pattern PATTERN0 = Pattern.compile("^（?\\s*(\\d{4})[.，,、．/\\-年]?([01]?\\d)[.，,、．/\\-月]?[，于在]?[^\\d]{0,3}\\s*）?$");
+    private final static Pattern PATTERN0 = Pattern.compile("^（?\\s*(\\d{4})[.，,、．/╱\\-年]?([01]?\\d)[.，,、．/╱\\-月]?[，于在]?[^\\d]{0,3}\\s*）?$");
 
-    private final static Pattern PATTERN1 = Pattern.compile("^（?\\s*([一二三四五六七八九〇零O0-9]{4})[.，、,．/\\-年]?\\s*([0-9元正一二三四五六七八九十]{1,2})[.，、,．/\\-月]?[于在]?[^\\d]{0,3}\\s*）?$");
+    private final static Pattern PATTERN1 = Pattern.compile("^（?\\s*([一二三四五六七八九〇零O0-9]{4})[.，、,．/╱\\-年]?\\s*([0-9元正一二三四五六七八九十]{1,2})[.，、,．/╱\\-月]?[于在]?[^\\d]{0,3}\\s*）?$");
 
     private String format0(String lastLine) {
         Matcher matcher = PATTERN0.matcher(lastLine);

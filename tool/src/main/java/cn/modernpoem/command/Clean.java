@@ -217,7 +217,7 @@ public class Clean extends BaseCommand {
         VALID_STRING_MAP.put("７", "7");
         VALID_STRING_MAP.put("８", "8");
         VALID_STRING_MAP.put("９", "9");
-        VALID_STRING_MAP.put("○", "〇");
+        VALID_STRING_MAP.put("〇", "〇");
         VALID_STRING_MAP.put(",", "，");
         VALID_STRING_MAP.put("／", "/");
 
