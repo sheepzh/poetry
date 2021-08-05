@@ -17,8 +17,12 @@ if not os.path.exists(path):
     quit()
 
 trash_dir = os.path.join(USER_HOME, '.poem_trash')
-if not os.path.exists(trash_dir):
-    os.makedirs(trash_dir)
+
+if os.path.exists(trash_dir):
+    shutil.rmtree(trash_dir)
+
+os.makedirs(trash_dir)
+
 
 for path, dir_list, file_list in os.walk(path):
     for file_name in file_list:
