@@ -6,10 +6,11 @@ import requests
 
 
 class Profile:
-    def __init__(self, href, author, title):
+    def __init__(self, href, author, title, date=''):
         self.href = href
         self.author = author
         self.title = title
+        self.date = date
 
     def __str__(self):
         return self.author + " " + self.title + " " + self.href
@@ -28,7 +29,7 @@ def write_poem(p, content):
         os.makedirs(poet_dir_path)
     title = p.title
     poem_path = p.file_path()
-    content = "title:" + title + "\n" + "date:\n\n" + content
+    content = "title:" + title + "\n" + "date:" + p.date + "\n\n" + content
     try:
         with open(poem_path, "w", encoding="utf-8") as file:
             file.write(content)
