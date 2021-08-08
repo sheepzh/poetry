@@ -9,7 +9,7 @@ class Profile:
     def __init__(self, href, author, title, date=''):
         self.href = href
         self.author = author
-        self.title = title
+        self.title = title.replace('/', '／')
         self.date = date
 
     def __str__(self):
