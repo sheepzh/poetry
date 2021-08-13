@@ -54,3 +54,7 @@ def get_html(url, encoding=''):
     if response.status_code == 404:
         return None
     return response.text
+
+
+def digit_2_two(digit: str):
+    return '0' + digit if len(digit) == 1 else digit
