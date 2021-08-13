@@ -22,6 +22,10 @@ class Profile:
     def file_path(self):
         return os.path.join(self.poet_path(), self.title + ".pt")
 
+    def relative_file_path(self):
+        pinyin = "".join(lazy_pinyin(self.author))
+        return os.path.join(self.author + "_" + pinyin)
+
 
 def write_poem(p, content):
     poet_dir_path = p.poet_path()
