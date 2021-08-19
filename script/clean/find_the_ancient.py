@@ -1,9 +1,12 @@
 """
     To find suspected ancient poems
 """
+from util import read_tmp_file, write_to_tmp_file, iterate_poems, Poem
 import sys
 import os
 import re
+
+TEMP_FILE = 'ancient_whitelist'
 
 argv = sys.argv
 if len(argv) > 1:
@@ -21,9 +24,7 @@ def strict_line(line):
     return re.sub(r'[，。、？！；：“”—-【】《》…]', '', line)
 
 
-def find(path, strict=False):
-    file = open(path, 'r', encoding='utf-8')
-    content = file.readlines()[3:]
+def find(content, strict=False):
     word_count_per_line = 0
     diff = False
     if len(content) < 2:
@@ -42,16 +43,7 @@ def find(path, strict=False):
     return not diff and word_count_per_line >= 4
 
 
-whitelist = []
-whitelist_dir_path = sys.path[0]
-whitelist_path = os.path.join(whitelist_dir_path, 'ancient_whitelist')
-if os.path.exists(whitelist_path):
-    file = open(whitelist_path, 'r', encoding='utf-8')
-    for line in file.readlines():
-        line = line.strip()
-        if line:
-            whitelist.append(line)
-
+whitelist = read_tmp_file(TEMP_FILE)
 
 # Really exist
 found_whitelist = []
@@ -59,23 +51,23 @@ found_whitelist = []
 found = []
 
 
-for path, dir_list, file_list in os.walk(path):
-    for file_name in file_list:
-        if not file_name.endswith('.pt'):
-            continue
-        file_path = os.path.join(path, file_name)
-        if file_path in whitelist:
-            found_whitelist.append(file_path)
-        like_ancient = find(file_path) and find(file_path, True) if strict else find(file_path)
-        if like_ancient:
-            found.append(file_path)
+def iterator(poem: Poem, poem_path: str, __file_name__):
+    if poem_path in whitelist:
+        found_whitelist.append(poem_path)
+    content = poem.content
+    like_ancient = find(content) and find(content, True) if strict else find(content)
+    if like_ancient:
+        found.append(poem_path)
+
+
+iterate_poems(path, iterator)
+
 
 if write_whitelist:
     for path in found:
         if path not in found_whitelist:
             found_whitelist.append(path)
-    file = open(whitelist_path, 'w', encoding='utf-8')
-    file.write('\n'.join(sorted(found_whitelist)))
+    write_to_tmp_file(TEMP_FILE, found_whitelist)
 else:
     for path in found:
         if path not in whitelist:
