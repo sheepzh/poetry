@@ -9,5 +9,27 @@
     "git.ignoreLimitWarning": true,
     "cSpell.words": [
         "lxml"
-    ]
+    ],
+    // Settings for plugin: macros
+    "macros": {
+        // line => 《line》
+        "wrapWithTitleSign": [
+            // Move the cursor the the start of this line
+            "cursorLineStart",
+            {
+                "command": "type",
+                "args": {
+                    "text": "《"
+                }
+            },
+            // Move the cursor the the end of this line
+            "cursorLineEnd",
+            {
+                "command": "type",
+                "args": {
+                    "text": "》"
+                }
+            }
+        ]
+    }
 }
