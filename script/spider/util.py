@@ -3,6 +3,9 @@ from pypinyin import lazy_pinyin
 import os
 import shutil
 import requests
+import sys
+
+TMP_DIR_PATH = os.path.join(sys.path[0], 'tmp')
 
 
 class Profile:
@@ -16,8 +19,8 @@ class Profile:
         return self.author + " " + self.title + " " + self.href
 
     def poet_path(self):
-        pinyin = "".join(lazy_pinyin(self.author))
-        return os.path.join(".", "tmp", self.author + "_" + pinyin)
+        pinyin = "".join(lazy_pinyin(self.author)).lower()
+        return os.path.join(TMP_DIR_PATH, self.author + "_" + pinyin)
 
     def file_path(self):
         return os.path.join(self.poet_path(), self.title + ".pt")
@@ -46,7 +49,7 @@ def write_poem(p, content):
 
 def remove_tmp_all():
     try:
-        shutil.rmtree(os.path.join(".", "tmp"))
+        shutil.rmtree(TMP_DIR_PATH)
     except FileNotFoundError:
         pass
 
@@ -58,6 +61,14 @@ def get_html(url, encoding=''):
     if response.status_code == 404:
         return None
     return response.text
+
+
+def get_soup(url, encoding=''):
+    html = get_html(url, encoding)
+    if not html:
+        html = '<html></html>'
+    from bs4 import BeautifulSoup
+    return BeautifulSoup(html, 'lxml')
 
 
 def digit_2_two(digit: str):
