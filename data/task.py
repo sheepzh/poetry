@@ -1,6 +1,7 @@
 import re
 import os
 
+
 def write(title, content, prefix=None, date=None):
     print(title)
     if not date:
@@ -17,8 +18,14 @@ def split_by_regrex(file_name, regrex_str, prefix='', date=None, title_map=None,
     content = []
     regrex = re.compile(regrex_str)
     index = 1
+    origin_date = ''
     with open(file_name + '.pt', 'r', encoding='UTF-8') as file:
-        lines = file.readlines()[3:]
+        file_lines = file.readlines()
+        lines = file_lines[3:]
+        date_line = file_lines[1]
+        if len(date_line) > 5:
+            origin_date = date_line[5:]
+    date = date if date else origin_date
 
     for line in lines:
         line = line.strip()
