@@ -1,5 +1,6 @@
 import os
 import re
+import shutil
 import math
 
 
@@ -18,11 +19,14 @@ word = 0
 
 for root, ds, _ in os.walk('data'):
     for d in ds:
-        poet += 1
         d_path = os.path.join('data', d)
-        for filename in os.listdir(d_path):
-            if not filename.endswith('.pt'):
-                continue
+        file_list = list(filter(lambda f: f.endswith('.pt'), os.listdir(d_path)))
+        if not len(file_list):
+            print(d_path)
+            shutil.rmtree(d_path)
+            continue
+        poet += 1
+        for filename in file_list:
             poem += 1
             file_path = os.path.join(d_path, filename)
             file = open(file_path, 'r', encoding='utf-8')
