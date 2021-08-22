@@ -8,5 +8,9 @@
     {
         "key": "ctrl+shift+'",
         "command": "macros.deleteDuplicateTitle"
+    },
+    {
+        "key": "ctrl+shift+c",
+        "command": "macros.copyTheTitle"
     }
 ]

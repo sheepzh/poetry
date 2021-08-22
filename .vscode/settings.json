@@ -38,6 +38,19 @@
             "cursorDown",
             "cursorDown",
             "editor.action.deleteLines"
+        ],
+        // Copy the title
+        "copyTheTitle": [
+            "cursorTop",
+            "cursorHome",
+            "cursorRight",
+            "cursorRight",
+            "cursorRight",
+            "cursorRight",
+            "cursorRight",
+            "cursorRight",
+            "cursorEndSelect",
+            "editor.action.clipboardCopyAction"
         ]
     }
 }
