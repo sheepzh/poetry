@@ -37,7 +37,9 @@
             "cursorDown",
             "cursorDown",
             "cursorDown",
-            "editor.action.deleteLines"
+            "cursorHome",
+            "cursorEndSelect",
+            "editor.action.clipboardCutAction"
         ],
         // Copy the title
         "copyTheTitle": [
