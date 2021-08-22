@@ -30,6 +30,14 @@
                     "text": "》"
                 }
             }
+        ],
+        // Delete the duplicate title located line #3
+        "deleteDuplicateTitle": [
+            "cursorTop",
+            "cursorDown",
+            "cursorDown",
+            "cursorDown",
+            "editor.action.deleteLines"
         ]
     }
 }

@@ -4,5 +4,9 @@
     {
         "key": "ctrl+shift+/",
         "command": "macros.wrapWithTitleSign"
+    },
+    {
+        "key": "ctrl+shift+'",
+        "command": "macros.deleteDuplicateTitle"
     }
 ]
