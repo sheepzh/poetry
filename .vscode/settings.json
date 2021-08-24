@@ -29,7 +29,8 @@
                 "args": {
                     "text": "》"
                 }
-            }
+            },
+            "workbench.action.files.save"
         ],
         // Delete the duplicate title located line #3
         "deleteDuplicateTitle": [
@@ -39,7 +40,8 @@
             "cursorDown",
             "cursorHome",
             "cursorEndSelect",
-            "editor.action.clipboardCutAction"
+            "editor.action.clipboardCutAction",
+            "workbench.action.files.save"
         ],
         // Copy the title
         "copyTheTitle": [
