@@ -1,5 +1,7 @@
 package cn.modernpoem.date;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 
 /**
@@ -26,6 +28,23 @@ public interface DateFormatter {
         } else {
             return monthOrDate;
         }
+    }
+
+    static String yearOf2Bit(String year) {
+        // Current period
+        // e.g.
+        //
+        // 2021 => 2
+        // 2019 => 1
+        int yearOfNow = Calendar.getInstance().get(Calendar.YEAR);
+        int currentPeriod = (yearOfNow % 100) / 10;
+        int currentCentury = yearOfNow / 100;
+        int century = year.charAt(0) - '0' <= currentPeriod ?
+                // this century
+                currentCentury :
+                // last century
+                currentCentury - 1;
+        return century + year;
     }
 
     char[] HAN_ZI0 = "〇一二三四五六七八九".toCharArray();
