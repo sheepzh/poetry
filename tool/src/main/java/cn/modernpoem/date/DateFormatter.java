@@ -23,6 +23,7 @@ public interface DateFormatter {
      * @return 2 digit number
      */
     static String addZeroOf(String monthOrDate) {
+        monthOrDate = monthOrDate.replace("l", "1");
         if (monthOrDate.length() == 1) {
             return '0' + monthOrDate;
         } else {
@@ -57,6 +58,9 @@ public interface DateFormatter {
      * @return number, or input char
      */
     static String toNumber(int hanZi) {
+        if (Character.isDigit(hanZi)) {
+            return "" + ((char) hanZi);
+        }
         for (int i = 0; i < HAN_ZI0.length; i++) {
             if (hanZi == HAN_ZI0[i] || hanZi == HAN_ZI1[i]) {
                 return String.valueOf((char) ('0' + i));
