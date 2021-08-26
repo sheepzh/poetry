@@ -43,16 +43,17 @@ public class SuffixDateParser {
         if (lastLine.isEmpty()) {
             return lastLine;
         }
-
         char first = lastLine.charAt(0);
         if (first == '(' || first == '（' || first == '[') {
             lastLine = lastLine.substring(1);
+        }
+        if (lastLine.isEmpty()) {
+            return lastLine;
         }
         char last = lastLine.charAt(lastLine.length() - 1);
         if (last == ')' || last == '）' || last == ']') {
             lastLine = lastLine.substring(0, lastLine.length() - 1);
         }
-
         if (lastLine.startsWith("——")) {
             lastLine = lastLine.substring(2);
         }
@@ -62,15 +63,18 @@ public class SuffixDateParser {
         if (lastLine.startsWith("于")) {
             lastLine = lastLine.substring(1);
         }
+        if (lastLine.endsWith("初稿") || lastLine.endsWith("定稿")) {
+            lastLine = lastLine.substring(lastLine.length() - 2);
+        }
         return lastLine;
     }
 
     public boolean parse(Poem poem) {
         List<String> contents = poem.getLines();
+        boolean result = removeLastEmptyLines(contents);
         if (contents.isEmpty()) {
             return false;
         }
-        boolean result = removeLastEmptyLines(contents);
         String lastLine = preprocess(contents.get(contents.size() - 1), poem);
         for (DateFormatter formatter : formatters) {
             String date = formatter.format(lastLine);

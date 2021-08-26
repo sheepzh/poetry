@@ -14,7 +14,8 @@ public class LastLineValidator {
             Pattern.compile("^[（(]?(刊载|刊登)([于在])?《.*》(\\d{4}年(第?\\d{1,2}[期月刊号]{1,2})?)?[）)]?"),
             Pattern.compile("^[（(]?(本诗)?(发表|首发)于.*《.+》.*，.*[）)]?$"),
             Pattern.compile("^[（(]?选自《.*》.*\\d{4}年.*[）)]?$"),
-            Pattern.compile("^(ps|PS)[.，。:：].*$")
+            Pattern.compile("^(ps|PS)[.，。:：].*$"),
+            Pattern.compile("^注[：:](.*)$")
     );
 
 
