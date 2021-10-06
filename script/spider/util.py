@@ -9,18 +9,23 @@ TMP_DIR_PATH = os.path.join(sys.path[0], 'tmp')
 
 
 class Profile:
-    def __init__(self, href, author, title, date=''):
+    def __init__(self, href, author, title, date='', data_dir_path=None, poet_dir_path=None):
         self.href = href
         self.author = author
         self.title = title.replace('/', '／')
         self.date = date
+        self.data_dir_path = data_dir_path
+        self.poet_dir_path = poet_dir_path
 
     def __str__(self):
         return self.author + " " + self.title + " " + self.href
 
     def poet_path(self):
+        if self.poet_dir_path:
+            return self.poet_dir_path
         pinyin = "".join(lazy_pinyin(self.author)).lower()
-        return os.path.join(TMP_DIR_PATH, self.author + "_" + pinyin)
+        root_dir = self.data_dir_path if self.data_dir_path else TMP_DIR_PATH
+        return os.path.join(root_dir, self.author + "_" + pinyin)
 
     def file_path(self):
         return os.path.join(self.poet_path(), self.title + ".pt")
