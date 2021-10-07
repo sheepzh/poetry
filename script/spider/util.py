@@ -59,8 +59,8 @@ def remove_tmp_all():
         pass
 
 
-def get_html(url, encoding=''):
-    response = requests.get(url)
+def get_html(url, encoding='', timeout=999999999):
+    response = requests.get(url, timeout=timeout)
     if encoding:
         response.encoding = encoding
     if response.status_code == 404:
@@ -68,10 +68,10 @@ def get_html(url, encoding=''):
     return response.text
 
 
-def get_soup(url, encoding=''):
-    html = get_html(url, encoding)
+def get_soup(url, encoding='', timeout=999999999):
+    html = get_html(url, encoding, timeout)
     if not html:
-        html = '<html></html>'
+        return None
     from bs4 import BeautifulSoup
     return BeautifulSoup(html, 'lxml')
 
