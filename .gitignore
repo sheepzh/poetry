@@ -18,3 +18,4 @@ script/spider
 
 script/export/*.txt
 script/export/*.sql
+tmp
