@@ -1,4 +1,4 @@
-from genericpath import exists
+# -*- coding: utf-8 -*-
 from util import Profile, write_poem
 import requests
 import os
@@ -105,7 +105,7 @@ def main():
         (poet, poems) = parse_poet(start)
         if not poet or not poems or not len(poems):
             # Any poems do not exist
-            
+
             if start <= 2000:
                 start += 1
                 continue

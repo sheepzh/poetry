@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # pip3 install pypinyin
 from pypinyin import lazy_pinyin
 import os
