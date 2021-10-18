@@ -44,4 +44,4 @@
 
 ## 友链
 
-[诗歌 WIKI](https://poemwiki.org/) | [新诗馆](http://www.poeting.cn/)
+[诗歌 WIKI](https://poemwiki.org/) | [读首诗再睡觉](https://bedtimepoem.com/) | [新诗馆](http://www.poeting.cn/)
