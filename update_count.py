@@ -65,7 +65,7 @@ if not auth:
 else:
     print("GITHUB_AUTH={}".format(auth))
 
-desc = "最全的汉语现代诗歌语料库整理，{}诗人，{}+诗歌，{}+字，包括五四至今的所有流派。持续扩充...".format(poet_count, poem_count, word_count)
+desc = "汉语现代诗歌语料库整理，{}诗人，{}诗歌，{}字。持续扩充...".format(poet_count, poem_count, word_count)
 import requests
 import json
 data = {
