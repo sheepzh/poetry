@@ -1,5 +1,4 @@
 import re
-import os
 
 
 def write(title, content, prefix=None, date=None):
@@ -21,6 +20,9 @@ def split_by_regrex(file_name, regrex_str, prefix='', date=None, title_map=None,
     origin_date = ''
     with open(file_name + '.pt', 'r', encoding='UTF-8') as file:
         file_lines = file.readlines()
+        # 1st line: title:${title}
+        # 2nd line: date:${date}
+        # 3rd line: url:${origin url}
         lines = file_lines[3:]
         date_line = file_lines[1]
         if len(date_line) > 5:
@@ -81,7 +83,7 @@ def split_by_titles(file_name, titles=[], prefix='', date=None):
         write(t, content, prefix, date)
 
 
-# split_by_titles('哲学家和诗人（三首）', ['“有人吗？”', '致敬', '哲学家和诗人'], prefix='', date='')
+# split_by_titles('1', ['“有人吗？”', '致敬', '哲学家和诗人'], prefix='', date='')
 
 def index_to_title(_title, index): return str(index)
 
