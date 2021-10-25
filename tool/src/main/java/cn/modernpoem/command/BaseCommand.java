@@ -69,10 +69,11 @@ public abstract class BaseCommand implements ArgAssertable {
 
     void iterate(Predicate<Poet> poetPredicate,
                  Consumer<Poet> poetConsumer,
+                 Predicate<Poem> poemPredicate,
                  PoemHandler poemHandler,
                  boolean multiThread) {
         Predicate<Poet> finalPoetPredicate = poetPredicate == null ? foo -> true : poetPredicate;
-        Predicate<Poem> finalPredicate = a -> true;
+        Predicate<Poem> finalPredicate = poemPredicate == null ? _ignored -> true : poemPredicate;
 
         FileHelper fileHelper = new FileHelper();
         List<Poet> poets = fileHelper.getAll();
@@ -97,6 +98,13 @@ public abstract class BaseCommand implements ArgAssertable {
                 }
             });
         }
+    }
+
+    void iterate(Predicate<Poet> poetPredicate,
+                 Consumer<Poet> poetConsumer,
+                 PoemHandler poemHandler,
+                 boolean multiThread) {
+        iterate(poetPredicate, poetConsumer, null, poemHandler, multiThread);
     }
 
     void split() {

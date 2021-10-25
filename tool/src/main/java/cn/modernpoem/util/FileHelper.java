@@ -81,23 +81,28 @@ public class FileHelper {
                 try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(f));
                      BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
-                    int infoFinish = 2;
+                    // title date url
+                    int infoReadFlag = 0b000;
                     boolean contentStart = false;
 
                     String ss;
                     while ((ss = reader.readLine()) != null) {
-                        if (ss.startsWith("title")) {
+                        if (ss.startsWith("title:")) {
                             // 使用文件内的名称
                             String inTitle = ss.substring(6).trim();
                             poem.setTitle(inTitle);
                             if (!(inTitle + ".pt").equals(s)) {
                                 System.out.println("WARNING: Bad file name " + poet.getDirName() + File.separator + s);
                             }
-                            --infoFinish;
-                        } else if (ss.startsWith("date")) {
+                            infoReadFlag |= 0b100;
+                        } else if (ss.startsWith("date:")) {
                             poem.setDate(ss.substring(5).trim());
-                            --infoFinish;
-                        } else if (infoFinish == 0) {
+                            infoReadFlag |= 0b010;
+                        } else if (ss.startsWith("url:")) {
+                            poem.setUrl(ss.substring(4).trim());
+                            poem.setHasLink(true);
+                            infoReadFlag |= 0b001;
+                        } else if ((infoReadFlag & 0b111) > 0) {
                             if (contentStart) {
                                 poem.lineAppend(ss);
                             } else if (!ss.trim().isEmpty()) {
