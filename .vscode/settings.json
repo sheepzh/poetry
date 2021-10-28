@@ -9,5 +9,52 @@
     "git.ignoreLimitWarning": true,
     "cSpell.words": [
         "lxml"
-    ]
+    ],
+    // Settings for plugin: macros
+    "macros": {
+        // line => 《line》
+        "wrapWithTitleSign": [
+            // Move the cursor the the start of this line
+            "cursorLineStart",
+            {
+                "command": "type",
+                "args": {
+                    "text": "《"
+                }
+            },
+            // Move the cursor the the end of this line
+            "cursorLineEnd",
+            {
+                "command": "type",
+                "args": {
+                    "text": "》"
+                }
+            },
+            "workbench.action.files.save"
+        ],
+        // Delete the duplicate title located line #3
+        "deleteDuplicateTitle": [
+            "cursorTop",
+            "cursorDown",
+            "cursorDown",
+            "cursorDown",
+            "cursorHome",
+            "cursorEndSelect",
+            "editor.action.clipboardCutAction",
+            "workbench.action.files.save"
+        ],
+        // Copy the title
+        "copyTheTitle": [
+            "cursorTop",
+            "cursorHome",
+            "cursorRight",
+            "cursorRight",
+            "cursorRight",
+            "cursorRight",
+            "cursorRight",
+            "cursorRight",
+            "cursorEndSelect",
+            "editor.action.clipboardCopyAction"
+        ]
+    }
 }

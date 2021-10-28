@@ -9,11 +9,32 @@ import java.util.stream.Collectors;
  * @author zhy
  */
 public class YmdFormatter implements DateFormatter {
-    private final static Pattern PATTERN = Pattern.compile("^[(（]?\\s*(\\d{4})[.,、′，．/╱\\-年]?(\\d{1,2})[.,、′，．/╱\\-月](\\d{1,2})[.．日]?[，于在]?.{0,4}\\s*[)）]?$");
-    private final static Pattern PATTERN_1 = Pattern.compile("([零一二三四五六七八九十〇]{4})年([一二三四五六七八九十〇]{1,2})月([一二三四五六七八九十〇廿卅]{1,3})日");
+    private final static Pattern PATTERN = Pattern.compile("^[(（]?\\s*(\\d{4})[.,、′·，．。\\\\/╱\\-—－年]{0,2}([\\dl]{1,2})[.,、′·，．。\\\\/╱\\-—－月]{1,2}([\\dl]{1,2})[.．日]?(\\s*\\d{2}:\\d{2}(:\\d{2}))?。?[，于在]?.{0,10}\\s*[)）]?$");
+    private final static Pattern PATTERN_1 = Pattern.compile("([零一二三四五六七八九十〇\\d]{4})年([一二三四五六七八九十〇]{1,2})月([一二三四五六七八九十〇廿卅]{1,3})日");
+    private final static Pattern PATTERN_2 = Pattern.compile("^((19|20)\\d{2}[0-1]\\d[0-3]\\d)$");
+    /**
+     * 2-bit year
+     */
+    private final static Pattern PATTERN_3 = Pattern.compile("^[(（]?\\s*(\\d{2})[.,、′，．。/╱\\-年]{1,2}(\\d{1,2})[.,、′，．。/╱\\-月]{1,2}(\\d{1,2})[.．日]?。?\\s*[)）]?$");
+    private final static Pattern PATTERN_4 = Pattern.compile("^(\\d{1,2})[./](\\d{1,2})[./](\\d{4}|\\d{2})$");
+
+    private int timesOf(String str, char target) {
+        int result = 0;
+        for (char c : str.toCharArray()) {
+            if (target == c) {
+                result += 1;
+            }
+        }
+        return result;
+    }
 
     @Override
     public String format(String lastLine) {
+        if (timesOf(lastLine, '-') == 1) {
+            // Use the start time
+            lastLine = lastLine.substring(0, lastLine.indexOf('-'));
+        }
+
         Matcher matcher = PATTERN.matcher(lastLine);
         if (matcher.matches()) {
             String year = matcher.group(1);
@@ -42,6 +63,26 @@ public class YmdFormatter implements DateFormatter {
                     .chars().mapToObj(DateFormatter::toNumber)
                     .collect(Collectors.joining());
             return year + DateFormatter.addZeroOf(month) + DateFormatter.addZeroOf(date);
+        }
+        matcher = PATTERN_2.matcher(lastLine);
+        if (matcher.matches()) {
+            return matcher.group();
+        }
+        matcher = PATTERN_3.matcher(lastLine);
+        if (matcher.matches()) {
+            String year = matcher.group(1);
+            String month = matcher.group(2);
+            String day = matcher.group(3);
+            return DateFormatter.yearOf2Bit(year) + DateFormatter.addZeroOf(month) + DateFormatter.addZeroOf(day);
+        }
+        matcher = PATTERN_4.matcher(lastLine);
+        if (matcher.matches()) {
+            String year = matcher.group(3);
+            String month = matcher.group(1);
+            String day = matcher.group(2);
+            return (year.length() == 4 ? year : DateFormatter.yearOf2Bit(year))
+                    + DateFormatter.addZeroOf(month)
+                    + DateFormatter.addZeroOf(day);
         }
         return null;
     }

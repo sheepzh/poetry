@@ -4,9 +4,9 @@
 	<img src="./doc/image/poet_cloud.png" width="100%">
 </div>
 
-![](https://img.shields.io/badge/poets-2403-orange)
-![](https://img.shields.io/badge/poems-52.3K-yellowgreen)
-![](https://img.shields.io/badge/words-10.26M-lightgreen)
+![](https://img.shields.io/badge/poets-2747-orange)
+![](https://img.shields.io/badge/poems-73.9K-yellowgreen)
+![](https://img.shields.io/badge/words-13.81M-lightgreen)
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=github_sheepzh_poetry)
 ![](https://img.shields.io/github/license/sheepzh/poetry)
 ![](https://img.shields.io/github/repo-size/sheepzh/poetry)
@@ -44,4 +44,4 @@
 
 ## 友链
 
-[诗歌 WIKI](https://poemwiki.org/)
+[诗歌 WIKI](https://poemwiki.org/) | [读首诗再睡觉](https://bedtimepoem.com/) | [新诗馆](http://www.poeting.cn/)

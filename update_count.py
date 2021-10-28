@@ -1,5 +1,6 @@
 import os
 import re
+import shutil
 import math
 
 
@@ -18,11 +19,14 @@ word = 0
 
 for root, ds, _ in os.walk('data'):
     for d in ds:
-        poet += 1
         d_path = os.path.join('data', d)
-        for filename in os.listdir(d_path):
-            if not filename.endswith('.pt'):
-                continue
+        file_list = list(filter(lambda f: f.endswith('.pt'), os.listdir(d_path)))
+        if not len(file_list):
+            print(d_path)
+            shutil.rmtree(d_path)
+            continue
+        poet += 1
+        for filename in file_list:
             poem += 1
             file_path = os.path.join(d_path, filename)
             file = open(file_path, 'r', encoding='utf-8')
@@ -61,7 +65,7 @@ if not auth:
 else:
     print("GITHUB_AUTH={}".format(auth))
 
-desc = "最全的汉语现代诗歌语料库整理，{}诗人，{}+诗歌，{}+字，包括五四至今的所有流派。持续扩充...".format(poet_count, poem_count, word_count)
+desc = "汉语现代诗歌语料库整理，{}诗人，{}诗歌，{}字。持续扩充...".format(poet_count, poem_count, word_count)
 import requests
 import json
 data = {

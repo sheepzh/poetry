@@ -52,10 +52,8 @@ for poet_path, dir_list, file_list in os.walk(origin_dir_path):
                 poem_count = poem_count + 1
         total_word_num = (total_word_num + frequency)
         frequency = frequency + poem_count * 30
-        if poet_name in adjust:
-            rate = adjust.get(poet_name)
-            # print('Adjusted ' + poet_name + ' with ' + str(rate))
-            frequency = math.floor(frequency * rate)
+        rate = adjust.get(poet_name) if poet_name in adjust else 0
+        frequency = math.floor(frequency * rate)
         frequencies.append((poet_name, frequency))
 
 frequencies.sort(reverse=True, key=lambda bi: bi[1])

@@ -28,7 +28,7 @@ for path, dir_list, file_list in os.walk(path):
     for file_name in file_list:
         if not file_name.endswith('.pt'):
             continue
-        file_title = file_name[:-3].strip()
+        file_title = file_name[:-3]
         file_path = os.path.join(path, file_name)
         with open(file_path, 'r', encoding='utf-8') as file:
             first_line = file.readline().strip()

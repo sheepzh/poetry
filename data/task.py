@@ -1,5 +1,5 @@
 import re
-import os
+
 
 def write(title, content, prefix=None, date=None):
     print(title)
@@ -17,8 +17,17 @@ def split_by_regrex(file_name, regrex_str, prefix='', date=None, title_map=None,
     content = []
     regrex = re.compile(regrex_str)
     index = 1
+    origin_date = ''
     with open(file_name + '.pt', 'r', encoding='UTF-8') as file:
-        lines = file.readlines()[3:]
+        file_lines = file.readlines()
+        # 1st line: title:${title}
+        # 2nd line: date:${date}
+        # 3rd line: url:${origin url}
+        lines = file_lines[3:]
+        date_line = file_lines[1]
+        if len(date_line) > 5:
+            origin_date = date_line[5:]
+    date = date if date else origin_date
 
     for line in lines:
         line = line.strip()
@@ -74,7 +83,7 @@ def split_by_titles(file_name, titles=[], prefix='', date=None):
         write(t, content, prefix, date)
 
 
-# split_by_titles('哲学家和诗人（三首）', ['“有人吗？”', '致敬', '哲学家和诗人'], prefix='', date='')
+# split_by_titles('1', ['“有人吗？”', '致敬', '哲学家和诗人'], prefix='', date='')
 
 def index_to_title(_title, index): return str(index)
 
@@ -83,4 +92,3 @@ def two_regrex(arr): return arr[0].strip() + '——' + arr[1].strip()
 
 
 split_by_regrex('1', r'^《(.*)》$', prefix='', date='')
-# split_by_regrex('小淡词（连载·八）', r'^《小淡词 (\d{1,3})》(.*)$', date='201211', prefix='小淡词', regrex_map=two_regrex)

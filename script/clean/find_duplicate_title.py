@@ -39,7 +39,7 @@ def iterator(poem: Poem, poem_path: str, __file_name__):
     ]
     if poem.title in suspend_lines:
         if strict:
-            if not content[1].strip():
+            if len(content) > 1 and not content[1].strip():
                 found.append(poem_path)
         else:
             found.append(poem_path)

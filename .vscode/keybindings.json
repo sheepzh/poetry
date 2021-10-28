@@ -1,0 +1,16 @@
+[
+    // Keybindings are not supported to set for each workspace
+    // So paste the following settings in your [HOME_PATH]/.config/Code/User/keybindings.json
+    {
+        "key": "ctrl+shift+/",
+        "command": "macros.wrapWithTitleSign"
+    },
+    {
+        "key": "ctrl+shift+'",
+        "command": "macros.deleteDuplicateTitle"
+    },
+    {
+        "key": "ctrl+shift+c",
+        "command": "macros.copyTheTitle"
+    }
+]

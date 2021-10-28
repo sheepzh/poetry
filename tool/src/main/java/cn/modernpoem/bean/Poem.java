@@ -21,6 +21,8 @@ public class Poem {
     Poet poet;
     String title;
     String date;
+    String url;
+    boolean hasLink = false;
     List<String> lines = new LinkedList<>();
 
     public String getTitleAndPoet() {
@@ -39,6 +41,9 @@ public class Poem {
             return false;
         } else {
             Poem o = (Poem) obj;
+            if(Objects.equals(o.getUrl(),url)){
+                return true;
+            }
             return Objects.equals(this.title, o.title) && Objects.equals(poet, o.poet);
         }
     }
