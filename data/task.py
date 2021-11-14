@@ -35,13 +35,14 @@ def split_by_regrex(file_name, regrex_str, prefix='', date=None, title_map=None,
         if regrex.match(line):
             if title:
                 if title_map:
-                    title = title_map(title, index)
+                    title = title_map(title, index).strip()
                 write(title, content, prefix=prefix, date=date)
                 index += 1
+            title_reg = regrex.findall(line)[0]
             if regrex_map:
-                title = regrex_map(regrex.findall(line)[0])
+                title = regrex_map(title_reg.strip())
             else:
-                title = regrex.findall(line)[0]
+                title = title_reg.strip()
             content = []
         else:
             content.append(line)
