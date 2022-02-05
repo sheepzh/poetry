@@ -9,10 +9,9 @@ from pathlib import Path
 USER_HOME = str(Path.home())
 
 argv = sys.argv
-if len(argv) > 1:
-    path = argv[1]
+path = argv[1] if len(argv) > 1 else None
 
-if not os.path.exists(path):
+if not path or not os.path.exists(path):
     print('no directory')
     quit()
 
