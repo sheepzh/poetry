@@ -199,6 +199,7 @@ public class Clean extends BaseCommand {
         Arrays.asList("\uff2f", "\ufffd", "●", "\uE003").forEach(c -> VALID_STRING_MAP.put(c, ""));
         Arrays.asList("　", "\uE5E5").forEach(c -> VALID_STRING_MAP.put(c, " "));
 
+        VALID_STRING_MAP.put("——-","——");
         VALID_STRING_MAP.put("--", "——");
         VALID_STRING_MAP.put("————", "——");
         VALID_STRING_MAP.put("?", "？");
