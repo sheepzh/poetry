@@ -87,6 +87,7 @@ public class FileHelper {
 
                     String ss;
                     while ((ss = reader.readLine()) != null) {
+                        ss = ss.trim();
                         if (ss.startsWith("title:")) {
                             // 使用文件内的名称
                             String inTitle = ss.substring(6).trim();
