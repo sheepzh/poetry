@@ -17,6 +17,7 @@ import java.util.Objects;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Poet {
     String name;
+    String pinyin;
     List<Poem> poemList;
     String dirName;
 

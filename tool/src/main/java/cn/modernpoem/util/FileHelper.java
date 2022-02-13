@@ -48,8 +48,11 @@ public class FileHelper {
                 File f = new File(ROOT_DIR_PATH + s);
                 if (f.isDirectory() && !f.isFile()) {
                     Poet poet = new Poet();
-                    int indexOfUnderline = s.indexOf(95);
-                    poet.setName(indexOfUnderline == -1 ? s : s.substring(0, indexOfUnderline));
+                    int indexOfUnderline = s.lastIndexOf(95);
+                    String name = indexOfUnderline == -1 ? s : s.substring(0, indexOfUnderline);
+                    String pinyin = indexOfUnderline == -1 ? "" : s.substring(indexOfUnderline + 1);
+                    poet.setName(name);
+                    poet.setPinyin(pinyin);
                     poet.setDirName(s);
                     poetList.add(poet);
                 }
