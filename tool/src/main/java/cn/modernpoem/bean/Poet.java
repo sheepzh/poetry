@@ -3,6 +3,7 @@ package cn.modernpoem.bean;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Objects;
  */
 @Getter
 @Setter
+@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Poet {
     String name;
@@ -29,10 +31,5 @@ public class Poet {
     @Override
     public boolean equals(Object obj) {
         return obj instanceof Poet && Objects.equals(this.dirName, ((Poet) obj).dirName);
-    }
-
-    @Override
-    public String toString() {
-        return this.name;
     }
 }

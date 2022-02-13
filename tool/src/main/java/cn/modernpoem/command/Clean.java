@@ -71,7 +71,9 @@ public class Clean extends BaseCommand {
         Predicate<Poet> poetPredicate = StringUtils.isBlank(poetName)
                 ? foo -> true
                 : poet -> Objects.equals(poet.getName(), poetName) || Objects.equals(poet.getPinyin(), poetName);
-        Predicate<Poem> poemPredicate = poem -> Objects.equals(poem.getPoet().getName(), poetName) || !poem.isHasLink();
+        Predicate<Poem> poemPredicate = poem -> Objects.equals(poem.getPoet().getName(), poetName)
+                || Objects.equals(poem.getPoet().getPinyin(), poetName)
+                || !poem.isHasLink();
         this.iterate(poetPredicate, null, poemPredicate, PoemHandler.of(this::poemConsumer), true);
         if (poetAndPoemListDealt.isEmpty()) {
             System.out.println("No poems modified.");
