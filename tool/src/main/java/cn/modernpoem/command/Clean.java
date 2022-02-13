@@ -70,7 +70,7 @@ public class Clean extends BaseCommand {
         poetAndPoemListDealt.clear();
         Predicate<Poet> poetPredicate = StringUtils.isBlank(poetName)
                 ? foo -> true
-                : poet -> Objects.equals(poet.getName(), poetName);
+                : poet -> Objects.equals(poet.getName(), poetName) || Objects.equals(poet.getPinyin(), poetName);
         Predicate<Poem> poemPredicate = poem -> Objects.equals(poem.getPoet().getName(), poetName) || !poem.isHasLink();
         this.iterate(poetPredicate, null, poemPredicate, PoemHandler.of(this::poemConsumer), true);
         if (poetAndPoemListDealt.isEmpty()) {
@@ -199,7 +199,7 @@ public class Clean extends BaseCommand {
         Arrays.asList("\uff2f", "\ufffd", "●", "\uE003").forEach(c -> VALID_STRING_MAP.put(c, ""));
         Arrays.asList("　", "\uE5E5").forEach(c -> VALID_STRING_MAP.put(c, " "));
 
-        VALID_STRING_MAP.put("——-","——");
+        VALID_STRING_MAP.put("——-", "——");
         VALID_STRING_MAP.put("--", "——");
         VALID_STRING_MAP.put("————", "——");
         VALID_STRING_MAP.put("?", "？");
@@ -208,7 +208,7 @@ public class Clean extends BaseCommand {
         VALID_STRING_MAP.put(".....", "……");
         VALID_STRING_MAP.put("....", "……");
         VALID_STRING_MAP.put("...", "…");
-        VALID_STRING_MAP.put("．．．","...");
+        VALID_STRING_MAP.put("．．．", "...");
         VALID_STRING_MAP.put(";", "；");
         VALID_STRING_MAP.put("０", "0");
         VALID_STRING_MAP.put("１", "1");
