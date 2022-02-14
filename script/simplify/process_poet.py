@@ -31,7 +31,12 @@ for root, dirs, _ in os.walk(path):
         name = dir[:idx]
         pinyin = dir[idx + 1:]
         simple_name = conv.convert(name)
-        if simple_name == name:
+
+        if simple_name.startswith('曾') and pinyin.startswith('ceng'):
+            pinyin = 'zeng' + pinyin[4:]
+        if simple_name.startswith('解') and pinyin.startswith('jie'):
+            pinyin = 'xie' + pinyin[3:]
+        elif simple_name == name:
             continue
         new_dir = simple_name + "_" + pinyin
         new_path = os.path.join(root, new_dir)
