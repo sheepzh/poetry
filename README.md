@@ -4,9 +4,9 @@
 	<img src="./doc/image/poet_cloud.png" width="100%">
 </div>
 
-![](https://img.shields.io/badge/poets-2999-orange)
-![](https://img.shields.io/badge/poems-76.2K-yellowgreen)
-![](https://img.shields.io/badge/words-14.28M-lightgreen)
+![](https://img.shields.io/badge/poets-3017-orange)
+![](https://img.shields.io/badge/poems-76.3K-yellowgreen)
+![](https://img.shields.io/badge/words-14.32M-lightgreen)
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=github_sheepzh_poetry)
 ![](https://img.shields.io/github/license/sheepzh/poetry)
 ![](https://img.shields.io/github/repo-size/sheepzh/poetry)
