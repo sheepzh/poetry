@@ -45,4 +45,9 @@ public class YmdFormatterTest {
     public void test8() {
         Assert.assertEquals(formatter.format("一九二三年三月二十九日"), "19230329");
     }
+
+    @Test
+    public void test89() {
+        Assert.assertEquals(formatter.format("一九九二、四、二"), "19920402");
+    }
 }

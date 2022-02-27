@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  */
 public class YmdFormatter implements DateFormatter {
     private final static Pattern PATTERN = Pattern.compile("^[(（]?\\s*(\\d{4})[.,、′·，．。\\\\/╱\\-—－年]{0,2}([\\dl]{1,2})[.,、′·，．。\\\\/╱\\-—－月]{1,2}([\\dl]{1,2})[.．日]?(\\s*\\d{2}:\\d{2}(:\\d{2}))?。?[，于在]?.{0,10}\\s*[)）]?$");
-    private final static Pattern PATTERN_1 = Pattern.compile("([零一二三四五六七八九十〇\\d]{4})年([一二三四五六七八九十〇]{1,2})月([一二三四五六七八九十〇廿卅]{1,3})日");
+    private final static Pattern PATTERN_1 = Pattern.compile("([零一二三四五六七八九十〇\\d]{4})[年、]([一二三四五六七八九十〇]{1,2})[月、]([一二三四五六七八九十〇廿卅]{1,3})[日]?");
     private final static Pattern PATTERN_2 = Pattern.compile("^((19|20)\\d{2}[0-1]\\d[0-3]\\d)$");
     /**
      * 2-bit year

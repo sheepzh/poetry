@@ -82,6 +82,7 @@ public class SuffixDateParser {
                 poem.setDate(date);
                 contents.remove(contents.size() - 1);
                 result = true;
+                break;
             }
         }
         removeLastEmptyLines(contents);
