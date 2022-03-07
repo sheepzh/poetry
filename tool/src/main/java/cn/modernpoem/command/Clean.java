@@ -91,6 +91,13 @@ public class Clean extends BaseCommand {
 
     private void poemConsumer(Poem p) {
         boolean[] state = new boolean[]{false, false};
+        // Clean title
+        String originTitle = p.getTitle();
+        String cleanedTitle = originTitle.trim();
+        if(!Objects.equals(originTitle, cleanedTitle)){
+            p.setTitle(cleanedTitle);
+            state[1] = true;
+        }
         List<String> before = p.getLines();
         List<String> after = new LinkedList<>();
         before.stream().map(s -> {
