@@ -93,7 +93,7 @@ public class Clean extends BaseCommand {
         boolean[] state = new boolean[]{false, false};
         // Clean title
         String originTitle = p.getTitle();
-        String cleanedTitle = originTitle.trim();
+        String cleanedTitle = StringUtils.trim(originTitle);
         if(!Objects.equals(originTitle, cleanedTitle)){
             p.setTitle(cleanedTitle);
             state[1] = true;
