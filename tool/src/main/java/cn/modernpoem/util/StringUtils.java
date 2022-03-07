@@ -12,7 +12,7 @@ public class StringUtils {
         return str == null || str.trim().isEmpty();
     }
 
-    public static final Set<Character> BLANK_CHARS = new HashSet<>(Arrays.asList('\u3000', '\u2800'));
+    public static final Set<Character> BLANK_CHARS = new HashSet<>(Arrays.asList('\u3000', '\u2800', '\r', '\n', '\t'));
 
     public static boolean isBlankChar(char c) {
         return c <= ' ' || BLANK_CHARS.contains(c);
