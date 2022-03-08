@@ -6,7 +6,7 @@ TMP_DIR_PATH = join(sys.path[0], 'tmp')
 
 
 class Poem:
-    def __init__(self, title: str, date: str, content: list):
+    def __init__(self, title:str, date: str, content: list):
         self.title = title
         self.date = date
         self.content = content

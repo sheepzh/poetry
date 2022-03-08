@@ -29,8 +29,8 @@ for root, dirs, _ in os.walk(path):
             continue
         idx = dir.rindex('_')
         name = dir[:idx]
-        pinyin = dir[idx + 1:]
-        simple_name = conv.convert(name)
+        pinyin = dir[idx + 1:].strip().strip("#")
+        simple_name = conv.convert(name.strip().strip("#"))
 
         if simple_name.startswith('曾') and pinyin.startswith('ceng'):
             pinyin = 'zeng' + pinyin[4:]
