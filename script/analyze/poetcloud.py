@@ -32,6 +32,9 @@ total_word_num = 0
 
 for poet_path, dir_list, file_list in os.walk(origin_dir_path):
     for poet_dir in dir_list:
+        if "_" not in poet_dir:
+            print("invalid poet dir name: " + os.path.join(poet_path, poet_dir))
+            continue
         poet_name = poet_dir[0:poet_dir.index('_')]
         frequency = 0
 

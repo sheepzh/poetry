@@ -8,19 +8,22 @@ import os
 import sys
 
 argv = sys.argv
+path = None
 if len(argv) > 1:
     path = argv[1]
 
-if not os.path.exists(path):
+if not path or not os.path.exists(path):
     print('no directory')
     quit()
 
 for dir in os.listdir(path):
-    if '_' not in dir:
-        continue
-    dir_path = os.path.join(path, dir)
+    dir_path = os.path.abspath(os.path.join(path, dir))
     if not os.path.isdir(dir_path):
         continue
+    if '_' not in dir:
+        print("Invalid poet dir name: " + os.path.abspath(os.path.join(path, dir)))
+        continue
+
     has_pt = False
     for file in os.listdir(dir_path):
         file_path = os.path.join(dir_path, file)
