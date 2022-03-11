@@ -1,8 +1,21 @@
 import re
+import sys
+
+argv = sys.argv
+target_name = None
+prefix = None
+if len(argv) > 1:
+    target_name = argv[1]
+if len(argv) > 2:
+    prefix = argv[2]
+
+idx = 0
 
 
 def write(title, content, prefix=None, date=None):
-    print(title)
+    global idx
+    idx += 1
+    print('#{} {}'.format(str(idx).zfill(2), title))
     if not date:
         date = ''
     if prefix:
@@ -91,5 +104,10 @@ def index_to_title(_title, index): return str(index)
 
 def two_regrex(arr): return arr[0].strip() + '——' + arr[1].strip()
 
+
+if target_name:
+    print("target name={}, prefix={}".format(target_name, prefix))
+    split_by_regrex(target_name, r'^《(.*)》$', prefix=prefix, date='')
+    quit()
 
 split_by_regrex('1', r'^《(.*)》$', prefix='', date='')
