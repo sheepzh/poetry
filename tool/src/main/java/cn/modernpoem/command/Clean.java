@@ -9,6 +9,8 @@ import cn.modernpoem.util.StringUtils;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -89,11 +91,16 @@ public class Clean extends BaseCommand {
         this.split();
     }
 
+    private final static Pattern TWO_WORD_TITLE = Pattern.compile("^(.)\\s+(.)$");
+
     private void poemConsumer(Poem p) {
         boolean[] state = new boolean[]{false, false};
         // Clean title
         String originTitle = p.getTitle();
         String cleanedTitle = StringUtils.trim(originTitle);
+        if (TWO_WORD_TITLE.matcher(cleanedTitle).matches()) {
+            cleanedTitle = cleanedTitle.substring(0, 1) + cleanedTitle.charAt(cleanedTitle.length() - 1);
+        }
         if (!Objects.equals(originTitle, cleanedTitle)) {
             p.setTitle(cleanedTitle);
             state[1] = true;
