@@ -94,7 +94,7 @@ public class Clean extends BaseCommand {
         // Clean title
         String originTitle = p.getTitle();
         String cleanedTitle = StringUtils.trim(originTitle);
-        if(!Objects.equals(originTitle, cleanedTitle)){
+        if (!Objects.equals(originTitle, cleanedTitle)) {
             p.setTitle(cleanedTitle);
             state[1] = true;
         }
@@ -210,6 +210,7 @@ public class Clean extends BaseCommand {
 
         VALID_STRING_MAP.put("——-", "——");
         VALID_STRING_MAP.put("--", "——");
+        VALID_STRING_MAP.put("――", "——");
         VALID_STRING_MAP.put("————", "——");
         VALID_STRING_MAP.put("?", "？");
         VALID_STRING_MAP.put("!", "！");
@@ -235,6 +236,9 @@ public class Clean extends BaseCommand {
         VALID_STRING_MAP.put("／", "/");
         VALID_STRING_MAP.put("﹝", "（");
         VALID_STRING_MAP.put("﹞", "）");
+        VALID_STRING_MAP.put("［", "[");
+        VALID_STRING_MAP.put("］", "]");
+        VALID_STRING_MAP.put("．", ".");
 
         VALID_STRING_MAP.keySet().forEach(i -> ROOT.add(i.toCharArray(), 0));
     }
