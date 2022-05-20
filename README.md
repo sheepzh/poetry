@@ -19,7 +19,6 @@
 ## 相关内容
 
 - [在线查阅](https://www.chinese-poetry.org/) ([源码地址](https://github.com/sheepzh/poetry-page))
-- [~~RESTful API~~](./doc/md/api.md) (已停止更新数据)
 
 ## 声明
 
@@ -34,7 +33,7 @@
 
 ## 反馈
 
-  - ISSUES：[<u>Github</u>](https://github.com/sheepzh/poetry/issues) | [<u>码云</u>](https://gitee.com/make-zero/poetry/issues)
+  - ISSUES：[<u>Github</u>](https://github.com/sheepzh/poetry/issues)
   - 侵删联系：returnzhy1996@outlook.com
 
 ## 致谢
