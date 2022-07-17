@@ -8,10 +8,11 @@ import sys
 
 
 argv = sys.argv
+path = None
 if len(argv) > 1:
     path = argv[1]
 
-if not os.path.exists(path):
+if not path or not os.path.exists(path):
     print('no directory')
     quit()
 
