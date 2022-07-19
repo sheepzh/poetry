@@ -4,7 +4,7 @@
 	<img src="./doc/image/poet_cloud.png" width="100%">
 </div>
 
-![](https://img.shields.io/badge/poets-3424-orange)
+![](https://img.shields.io/badge/poets-3423-orange)
 ![](https://img.shields.io/badge/poems-80.0K-yellowgreen)
 ![](https://img.shields.io/badge/words-15.1M-lightgreen)
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=github_sheepzh_poetry)
