@@ -1,12 +1,12 @@
-# 华语现代诗歌语料库
+# 汉语现代诗歌语料库
 
 <div align="center">
 	<img src="./doc/image/poet_cloud.png" width="100%">
 </div>
 
 ![](https://img.shields.io/badge/poets-3423-orange)
-![](https://img.shields.io/badge/poems-80.0K-yellowgreen)
-![](https://img.shields.io/badge/words-15.1M-lightgreen)
+![](https://img.shields.io/badge/poems-80.1K-yellowgreen)
+![](https://img.shields.io/badge/words-15.14M-lightgreen)
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=github_sheepzh_poetry)
 ![](https://img.shields.io/github/license/sheepzh/poetry)
 ![](https://img.shields.io/github/repo-size/sheepzh/poetry)
