@@ -6,6 +6,8 @@ target_name = None
 prefix = None
 if len(argv) > 1:
     target_name = argv[1]
+    if target_name.endswith(".pt"):
+        target_name = target_name[:-3]
 if len(argv) > 2:
     prefix = argv[2]
 
