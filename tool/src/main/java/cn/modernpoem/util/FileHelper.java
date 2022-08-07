@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
 import java.util.*;
 
 /**
@@ -71,7 +72,7 @@ public class FileHelper {
 
         List<Poem> poems = new ArrayList<>();
         for (String s : childFile) {
-            if (!s.endsWith("pt")) {
+            if (!s.endsWith("pt") && !s.endsWith("pttemp")) {
                 continue;
             }
 
@@ -81,7 +82,7 @@ public class FileHelper {
             if (ignoreContent) {
                 poem.setTitle(s.substring(0, s.length() - 3));
             } else {
-                try (BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(f));
+                try (BufferedInputStream inputStream = new BufferedInputStream(Files.newInputStream(f.toPath()));
                      BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
                     // title date url
